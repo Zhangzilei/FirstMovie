@@ -1,6 +1,9 @@
 package com.bw.movie.constant;
 
 
+import com.bw.movie.model.bean.CHaiLeftBean;
+import com.bw.movie.model.bean.CHaiRightBean;
+import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.PopularMovieBean;
@@ -14,6 +17,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -62,4 +66,28 @@ public interface Constant {
     @GET("movieApi/movie/v2/findComingSoonMovieList")
     Observable<ShangYingBean> SHANG_YING_BEAN(@Query("page") int page,
                                               @Query("count") int count);
+
+    //影院推荐
+    @GET("movieApi/cinema/v1/findRecommendCinemas")
+    Observable<CTuiJianBean> FINDRECOMMENDCINEMAS(@Header("userId")int userId,
+                                                  @Header("sessionId")String sessionId,
+                                                  @Query("page")int page,
+                                                  @Query("count")int count);
+
+    //影院附近
+    @GET("movieApi/cinema/v1/findNearbyCinemas")
+    Observable<CTuiJianBean> FINDNEARBYCINEMAS(@Header("userId")int userId,
+                                                  @Header("sessionId")String sessionId,
+                                                  @Query("longitude")String longitude,
+                                                  @Query("latitude")String latitude,
+                                                  @Query("page")int page,
+                                                  @Query("count")int count);
+
+    //影院海淀
+    @GET("movieApi/cinema/v2/findCinemaByRegion")
+    Observable<CHaiRightBean> FINDCINEMABYREGION(@Query("regionId")int regionId);
+
+    //影院附近
+    @GET("movieApi/tool/v2/findRegionList")
+    Observable<CHaiLeftBean> FINDREGIONLIST();
 }

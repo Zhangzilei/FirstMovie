@@ -1,6 +1,9 @@
 package com.bw.movie.constraint;
 
 
+import com.bw.movie.model.bean.CHaiLeftBean;
+import com.bw.movie.model.bean.CHaiRightBean;
+import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.PopularMovieBean;
@@ -59,5 +62,19 @@ public interface Constraint {
         void popularSuccess(PopularMovieBean popularMovieBean);
 
         void popularError(String s);
+    }
+
+    //附近和推荐
+    interface TuiJianView extends IBaseView{
+        void tuijianSuccess(CTuiJianBean cTuiJianBean);
+        void tuijianError(String s);
+    }
+    //chaileft
+    interface CHaiView extends IBaseView{
+        void leftSuccess(CHaiLeftBean leftBean);
+        void leftError(String s);
+
+        void rightSuccess(CHaiRightBean rightBean);
+        void rightError(String s);
     }
 }

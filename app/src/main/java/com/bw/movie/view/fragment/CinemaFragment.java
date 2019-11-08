@@ -80,6 +80,7 @@ public class CinemaFragment extends Fragment implements AMapLocationListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         list.add(new CTuiJianFragment());
         list.add(new CFuJinFragment());
         CHaiFragment cHaiFragment = new CHaiFragment();
