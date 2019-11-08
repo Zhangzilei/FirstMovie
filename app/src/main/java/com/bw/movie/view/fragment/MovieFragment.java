@@ -73,8 +73,6 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
     private PopularRecycleAdapter mPopularRecycleAdapter;
 
 
-    private String district;
-
     @Override
     void initData() {
 
@@ -200,9 +198,9 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
                         startActivity(intent);
                     } else {
                         Toast.makeText(getContext(), "格式不正确", Toast.LENGTH_SHORT).show();
-                        Uri uri = Uri.parse(jumpUrl);
-                        intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
+//                        Uri uri = Uri.parse(jumpUrl);
+//                        intent = new Intent(Intent.ACTION_VIEW, uri);
+//                        startActivity(intent);
                     }
                 }
             });
@@ -258,7 +256,7 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
 
             pop_name.setText(popularMovieBean.result.get(0).name);
             pop_pf.setText(String.valueOf(popularMovieBean.result.get(0).score + "分"));
-            Glide.with(getActivity()).load(popularMovieBean.result.get(0).imageUrl).into(pop_img);
+            Glide.with(getActivity()).load(popularMovieBean.result.get(0).horizontalImage).into(pop_img);
 
 //            Toast.makeText(getContext(), popularMovieBean.message, Toast.LENGTH_SHORT).show();
             mPopularRecycleAdapter.addAdd(popularMovieBean.result);

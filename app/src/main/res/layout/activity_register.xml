@@ -2,95 +2,112 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/zhu_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/zhu_bg"
     tools:context=".view.activity.RegisterActivity">
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="120dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_25"
+        android:layout_marginBottom="120dp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/edit_nicheng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
             android:background="@drawable/bg_shape"
             android:hint="请输入昵称"
+            android:paddingLeft="@dimen/dp_20"
             android:textColor="#fff"
-            android:textColorHint="#fff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColorHint="#fff" />
+
         <EditText
             android:id="@+id/edit_email"
-            android:paddingLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
             android:background="@drawable/bg_shape"
             android:hint="请输入邮箱"
+            android:paddingLeft="@dimen/dp_20"
             android:textColor="#fff"
-            android:textColorHint="#fff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColorHint="#fff" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edit_pwd"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_shape"
-                android:hint="请输入密码"
-                android:paddingLeft="20dp"
-                android:password="true"
-                android:textColor="#fff"
-                android:textColorHint="#fff"
-                android:layout_weight="3"
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/img_shan"
-                android:src="@mipmap/ic_launcher"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                <EditText
+                    android:id="@+id/edit_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/bg_shape"
+                    android:hint="请输入密码"
+                    android:paddingLeft="@dimen/dp_20"
+                    android:paddingRight="@dimen/dp_20"
+                    android:password="true"
+                    android:textColor="#fff"
+                    android:textColorHint="#fff" />
 
-            <ImageView
-                android:id="@+id/img_yan"
-                android:src="@mipmap/ic_launcher"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                <CheckBox
+                    android:id="@+id/img_shan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="60dp"
+                    android:background="@drawable/cuo"
+                    android:button="@null" />
+
+                <CheckBox
+                    android:id="@+id/img_yan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/login_icon_eye"
+                    android:button="@null" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <EditText
                 android:id="@+id/edit_yanzheng"
-                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/btn_yan"
                 android:background="@drawable/bg_shape"
                 android:hint="请输入验证码"
-                android:textColorHint="#fff"
+                android:paddingLeft="@dimen/dp_20"
                 android:textColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textColorHint="#fff" />
 
             <Button
                 android:id="@+id/btn_yan"
-                android:text="获取验证码"
-                android:layout_alignParentRight="true"
                 android:layout_width="100dp"
-                android:layout_height="55dp" />
+                android:layout_height="55dp"
+                android:layout_alignParentRight="true"
+                android:text="获取验证码" />
 
         </RelativeLayout>
 
@@ -98,26 +115,26 @@
 
     <TextView
         android:id="@+id/text_login"
-        android:text="已有账号?立即登录"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="105dp"
-        android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/dp_25"
+        android:layout_marginBottom="@dimen/dp_90"
+        android:text="已有账号?立即登录"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp_25"
+        android:layout_marginRight="@dimen/dp_25"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/shape"
         android:text="注册"
-        android:textSize="18sp"
         android:textColor="#ff5f71"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

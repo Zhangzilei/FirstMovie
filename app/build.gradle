@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
+
     signingConfigs {
         debug {
             keyAlias 'bw_movie'
             keyPassword '123456'
-            storeFile file('C:/Users/lenovo/Desktop/movie.keystore')
+            storeFile file('C:/Users/Administrator/Desktop/movie.keystore')
             storePassword '123456'
         }
     }
@@ -35,6 +36,10 @@ android {
                 }
             }
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
