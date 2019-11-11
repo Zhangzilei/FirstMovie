@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.ReYingBean;
 
@@ -43,7 +45,10 @@ public class ReYingRecycleAdapter extends RecyclerView.Adapter<ReYingRecycleAdap
     public void onBindViewHolder(@NonNull ReYingRecycleAdapter.ReYingViewHolder reYingViewHolder, int i) {
         reYingViewHolder.ry_name.setText(mList.get(i).name);
         reYingViewHolder.ry_pf.setText(String.valueOf(mList.get(i).score));
-        Glide.with(reYingViewHolder.itemView.getContext()).load(mList.get(i).imageUrl).into(reYingViewHolder.ry_img);
+        Glide.with(reYingViewHolder.itemView.getContext())
+                .load(mList.get(i).imageUrl)
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                .into(reYingViewHolder.ry_img);
     }
 
     @Override

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="310dp"
-    android:layout_height="130dp"
+    android:layout_width="@dimen/dp_310"
+    android:layout_height="@dimen/dp_130"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="10dp">
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/pop_img"
-        android:layout_width="310dp"
-        android:layout_height="130dp"
+        android:layout_width="@dimen/dp_310"
+        android:layout_height="@dimen/dp_130"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -17,32 +16,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
         android:text="aaaa"
         android:textColor="@android:color/white"
-        android:textSize="22dp"
+        android:textSize="@dimen/sp_22"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/pop_time"
         android:layout_width="wrap_content"
-        android:layout_height="21dp"
+        android:layout_height="@dimen/dp_21"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
         android:layout_toRightOf="@id/pop_name"
         android:maxLength="1"
-        android:padding="10dp"
+        android:padding="@dimen/dp_10"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/pop_btn_gp"
-        android:layout_width="45dp"
-        android:layout_height="21dp"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_21"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="@dimen/dp_15"
         android:background="@drawable/shape"
         android:text="购票"
-        android:textSize="15dp" />
+        android:textSize="@dimen/sp_15" />
 
 </RelativeLayout>

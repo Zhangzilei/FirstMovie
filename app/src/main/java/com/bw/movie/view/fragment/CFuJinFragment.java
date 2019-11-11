@@ -22,9 +22,9 @@ public class CFuJinFragment extends BaseFragment<CFuJinPresenter> implements Con
 
     private XRecyclerView frecycler;
     private CTuiJianAdapter tuiJianAdapter;
-    int page=1;
-    int userId=0;
-    String sessionId=null;
+    int page = 1;
+    int userId = 0;
+    String sessionId = null;
 
     @Override
     public void tuijianSuccess(CTuiJianBean cTuiJianBean) {
@@ -39,11 +39,25 @@ public class CFuJinFragment extends BaseFragment<CFuJinPresenter> implements Con
 
     }
 
+    //fragment懒加载
+    private boolean isFirst = true;
+    private boolean initView = false;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser && isFirst && initView) {
+            isFirst = false;
+            presenter.FuJin(userId, sessionId, null, null, page, 10);
+        }
+    }
+
     @Override
     void initData() {
-        presenter.FuJin(userId,sessionId,null,null,page,10);
+//        presenter.FuJin(userId, sessionId, null, null, page, 10);
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         frecycler.setLayoutManager(linearLayoutManager);
         tuiJianAdapter = new CTuiJianAdapter();
@@ -52,15 +66,15 @@ public class CFuJinFragment extends BaseFragment<CFuJinPresenter> implements Con
         frecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                page=1;
-                presenter.FuJin(userId,sessionId,null,null,page,10);
+                page = 1;
+                presenter.FuJin(userId, sessionId, null, null, page, 10);
                 frecycler.refreshComplete();
             }
 
             @Override
             public void onLoadMore() {
                 page++;
-                presenter.FuJin(userId,sessionId,null,null,page,10);
+                presenter.FuJin(userId, sessionId, null, null, page, 10);
                 frecycler.loadMoreComplete();
             }
         });
@@ -84,5 +98,6 @@ public class CFuJinFragment extends BaseFragment<CFuJinPresenter> implements Con
     @Override
     void initView(View view) {
         frecycler = view.findViewById(R.id.frecycler);
+        initView = true;
     }
 }

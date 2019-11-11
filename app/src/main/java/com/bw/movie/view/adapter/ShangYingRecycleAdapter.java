@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.ShangYingBean;
 
@@ -48,7 +50,10 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         shangYingViewHolder.sy_time.setText(simpleDateFormat.format(date));
         shangYingViewHolder.sy_ren.setText(String.valueOf(mList.get(i).wantSeeNum+"想看"));
-        Glide.with(shangYingViewHolder.itemView.getContext()).load(mList.get(i).imageUrl).into(shangYingViewHolder.sy_img);
+        Glide.with(shangYingViewHolder.itemView.getContext())
+                .load(mList.get(i).imageUrl)
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                .into(shangYingViewHolder.sy_img);
     }
 
     @Override

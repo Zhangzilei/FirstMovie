@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class CHaiFragment extends BaseFragment<CHaiPresenter> implements Constraint.CHaiView {
 
-    private RecyclerView leftre,rightre;
+    private RecyclerView leftre, rightre;
     private LeftAdapter leftAdapter;
     private RightAdapter rightAdapter;
 
@@ -56,37 +56,52 @@ public class CHaiFragment extends BaseFragment<CHaiPresenter> implements Constra
         rightAdapter.notifyDataSetChanged();
     }
 
+
+
     @Override
     public void rightError(String s) {
         Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
     }
 
+    //fragment懒加载
+    private boolean isFirst = true;
+    private boolean initView = false;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isFirst && initView) {
+            isFirst = false;
+            presenter.Left();
+            leftAdapter.setLeftBack(new LeftAdapter.LeftBack() {
+                @Override
+                public void onLeft(int isId) {
+                    Toast.makeText(getContext(), "" + isId, Toast.LENGTH_SHORT).show();
+
+                    presenter.Right(isId);
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    rightre.setLayoutManager(linearLayoutManager);
+                    rightAdapter = new RightAdapter();
+                    rightre.setAdapter(rightAdapter);
+
+                }
+            });
+        }
+    }
+
     @Override
     void initData() {
-        presenter.Left();
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         leftre.setLayoutManager(linearLayoutManager);
         leftAdapter = new LeftAdapter();
         leftre.setAdapter(leftAdapter);
 
-        leftAdapter.setLeftBack(new LeftAdapter.LeftBack() {
 
-            @Override
-            public void onLeft(int isId) {
-                Toast.makeText(getContext(), ""+isId, Toast.LENGTH_SHORT).show();
-
-                presenter.Right(isId);
-
-                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                rightre.setLayoutManager(linearLayoutManager);
-                rightAdapter = new RightAdapter();
-                rightre.setAdapter(rightAdapter);
-
-            }
-        });
     }
 
     @Override
@@ -96,7 +111,7 @@ public class CHaiFragment extends BaseFragment<CHaiPresenter> implements Constra
 
     @Override
     void initListener() {
-
+//        leftAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -108,5 +123,6 @@ public class CHaiFragment extends BaseFragment<CHaiPresenter> implements Constra
     void initView(View view) {
         leftre = view.findViewById(R.id.leftre);
         rightre = view.findViewById(R.id.rightre);
+        initView = true;
     }
 }

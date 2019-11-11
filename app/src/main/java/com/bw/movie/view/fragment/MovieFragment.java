@@ -23,6 +23,8 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
 import com.bw.movie.model.bean.HomeBanner;
@@ -34,11 +36,8 @@ import com.bw.movie.view.activity.BannerXiangActivity;
 import com.bw.movie.view.adapter.PopularRecycleAdapter;
 import com.bw.movie.view.adapter.ReYingRecycleAdapter;
 import com.bw.movie.view.adapter.ShangYingRecycleAdapter;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerListener;
-import com.youth.banner.loader.ImageLoader;
+import com.stx.xhb.xbanner.XBanner;
+import com.stx.xhb.xbanner.transformers.Transformer;
 
 import java.util.List;
 
@@ -48,11 +47,11 @@ import java.util.List;
  * <p>创建时间：2019/11/7/007<p>
  * <p>更改时间：2019/11/7/007<p>
  */
-public class MovieFragment extends BaseFragment<HomePageViewPresenter> implements Constraint.IHomeMovie,AMapLocationListener {
+public class MovieFragment extends BaseFragment<HomePageViewPresenter> implements Constraint.IHomeMovie, AMapLocationListener {
     private ImageView home_ding;
     private TextView home_ding_name;
     private ImageView home_sou;
-    private Banner home_banner;
+    private XBanner home_banner;
     private TextView home_re_duo;
     private RecyclerView home_ry_recycle;
     private TextView home_sy_duo;
@@ -71,7 +70,21 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
     private ReYingRecycleAdapter mReYingRecycleAdapter;
     private ShangYingRecycleAdapter mShangYingRecycleAdapter;
     private PopularRecycleAdapter mPopularRecycleAdapter;
+    private String mImageUrl;
 
+
+//    //fragment懒加载
+//    private boolean isFirst = true;
+//    private boolean initView = false;
+//
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser && isFirst && initView) {
+//            isFirst = false;
+//
+//        }
+//    }
 
     @Override
     void initData() {
@@ -100,11 +113,11 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
         mPopularRecycleAdapter = new PopularRecycleAdapter();
         home_rm_recycle.setAdapter(mPopularRecycleAdapter);
 
+
         presenter.homeBanner();
         presenter.reYing(true);
         presenter.shangYing(true);
         presenter.popular(true);
-
 
     }
 
@@ -127,7 +140,7 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
         home_ding = (ImageView) view.findViewById(R.id.home_ding);
         home_ding_name = (TextView) view.findViewById(R.id.home_ding_name);
         home_sou = (ImageView) view.findViewById(R.id.home_sou);
-        home_banner = (Banner) view.findViewById(R.id.home_banner);
+        home_banner = (XBanner) view.findViewById(R.id.home_banner);
         home_re_duo = (TextView) view.findViewById(R.id.home_re_duo);
         home_ry_recycle = (RecyclerView) view.findViewById(R.id.home_ry_recycle);
         home_sy_duo = (TextView) view.findViewById(R.id.home_sy_duo);
@@ -138,6 +151,8 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
         pop_name = (TextView) view.findViewById(R.id.pop_name);
         pop_pf = (TextView) view.findViewById(R.id.pop_pf);
         pop_btn_gp = (Button) view.findViewById(R.id.pop_btn_gp);
+
+//        initView = true;
 
         //检查版本是否大于M
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -151,6 +166,8 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
             }
         }
         showLocation();
+
+
     }
 
     @Override
@@ -159,54 +176,20 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
 //            Toast.makeText(getContext(), bannerBeans.message, Toast.LENGTH_SHORT).show();
             final List<HomeBanner.ResultBean> result = homeBanner.result;
 
-            //设置banner样式
-            home_banner.setBannerStyle(BannerConfig.NUM_INDICATOR);
+            home_banner.setData(result,null);
 
-            //设置图片加载器
-            home_banner.setImageLoader(new ImageLoader() {
+            home_banner.setmAdapter(new XBanner.XBannerAdapter() {
                 @Override
-                public void displayImage(Context context, Object path, ImageView imageView) {
-                    HomeBanner.ResultBean b = (HomeBanner.ResultBean) path;
-                    Glide.with(context).load(b.imageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+                public void loadBanner(XBanner banner, Object model, View view, int position) {
+                    Glide.with(getActivity()).load(result.get(position).imageUrl)
+                            .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                            .into((ImageView) view);
                 }
             });
 
-
-            home_banner.setImages(result);
-            //设置banner动画效果
-            home_banner.setBannerAnimation(Transformer.Tablet);
-
-            //设置自动轮播，默认为true
-            home_banner.isAutoPlay(true);
-            //设置轮播时间
-            home_banner.setDelayTime(3000);
-            //设置指示器位置（当banner模式中有指示器时）
-            home_banner.setIndicatorGravity(BannerConfig.CENTER);
-
-            //点击事件
-            home_banner.setOnBannerListener(new OnBannerListener() {
-                @Override
-                public void OnBannerClick(int position) {
-
-                    String jumpUrl = result.get(position).jumpUrl;
-
-                    Intent intent = null;
-
-                    if (jumpUrl.startsWith("http")) {
-                        intent = new Intent(getActivity(), BannerXiangActivity.class);
-                        intent.putExtra("url", jumpUrl);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(getContext(), "格式不正确", Toast.LENGTH_SHORT).show();
-//                        Uri uri = Uri.parse(jumpUrl);
-//                        intent = new Intent(Intent.ACTION_VIEW, uri);
-//                        startActivity(intent);
-                    }
-                }
-            });
-
-            //banner设置方法全部调用完毕时最后调用
-            home_banner.start();
+            home_banner.setPageTransformer(Transformer.Default);
+            home_banner.setPageTransformer(Transformer.Cube);
+            home_banner.setPageChangeDuration(1000);
         } else {
             Toast.makeText(getContext(), homeBanner.message, Toast.LENGTH_SHORT).show();
         }
@@ -256,7 +239,9 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
 
             pop_name.setText(popularMovieBean.result.get(0).name);
             pop_pf.setText(String.valueOf(popularMovieBean.result.get(0).score + "分"));
-            Glide.with(getActivity()).load(popularMovieBean.result.get(0).horizontalImage).into(pop_img);
+            Glide.with(getActivity()).load(popularMovieBean.result.get(0).horizontalImage)
+                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                    .into(pop_img);
 
 //            Toast.makeText(getContext(), popularMovieBean.message, Toast.LENGTH_SHORT).show();
             mPopularRecycleAdapter.addAdd(popularMovieBean.result);

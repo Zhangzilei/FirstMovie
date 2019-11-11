@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/boot_page_view_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200" />
 
 </LinearLayout>

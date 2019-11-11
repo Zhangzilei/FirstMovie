@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ShangYingBean;
@@ -46,7 +48,10 @@ public class PopularRecycleAdapter extends RecyclerView.Adapter<PopularRecycleAd
     public void onBindViewHolder(@NonNull PopularRecycleAdapter.PopularViewHolder popularViewHolder, int i) {
         popularViewHolder.pop_last_name.setText(mList.get(i).name);
         popularViewHolder.pop_last_pf.setText(String.valueOf(mList.get(i).score));
-        Glide.with(popularViewHolder.itemView.getContext()).load(mList.get(i).imageUrl).into(popularViewHolder.pop_last_img);
+        Glide.with(popularViewHolder.itemView.getContext())
+                .load(mList.get(i).imageUrl)
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                .into(popularViewHolder.pop_last_img);
     }
 
     @Override

@@ -3,7 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#16173f"
-    android:gravity="center">
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20">
+
+        <ImageView
+            android:id="@+id/home_ding"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_42"
+            android:layout_alignParentLeft="true"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/weizhi" />
+
+        <TextView
+            android:id="@+id/home_ding_name"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_42"
+            android:layout_toRightOf="@id/home_ding"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp_10"
+            android:text="aaaa"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_18" />
+
+        <EditText
+            android:id="@+id/home_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_42"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_1"
+            android:layout_toRightOf="@id/home_ding_name"
+            android:background="@drawable/sou_shape"
+            android:hint="请输入搜索内容"
+            android:paddingLeft="@dimen/dp_20"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/home_sou"
+            android:layout_width="@dimen/dp_37"
+            android:layout_height="@dimen/dp_42"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/sousou" />
+    </RelativeLayout>
+
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -15,71 +64,34 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp">
-
-                <ImageView
-                    android:id="@+id/home_ding"
-                    android:layout_width="36dp"
-                    android:layout_height="42dp"
-                    android:layout_alignParentLeft="true"
-                    android:padding="10dp"
-                    android:src="@drawable/weizhi" />
-
-                <TextView
-                    android:id="@+id/home_ding_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="42dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/home_ding"
-                    android:gravity="center"
-                    android:text="aaaa"
-                    android:textColor="@android:color/white"
-                    android:textSize="18dp" />
-
-                <ImageView
-                    android:id="@+id/home_sou"
-                    android:layout_width="37dp"
-                    android:layout_height="42dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="10dp"
-                    android:src="@drawable/sousou" />
-            </RelativeLayout>
-
-
-            <com.youth.banner.Banner
+            <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/home_banner"
                 android:layout_width="match_parent"
-                android:layout_height="147dp"
-                android:layout_margin="20dp" />
+                android:layout_height="@dimen/dp_150"
+                android:layout_margin="@dimen/dp_10" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp">
+                android:layout_height="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="#1c2243">
 
                 <ImageView
                     android:id="@+id/imageView_show"
-                    android:layout_width="29dp"
-                    android:layout_height="29dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/re" />
+                    android:layout_width="@dimen/dp_29"
+                    android:layout_height="@dimen/dp_29"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:src="@drawable/reying" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/dp_10"
                     android:layout_toRightOf="@id/imageView_show"
                     android:text="正在热映"
                     android:textColor="#fff"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/sp_18" />
 
                 <TextView
                     android:id="@+id/home_re_duo"
@@ -87,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/dp_20"
                     android:text="更多"
                     android:textColor="#fff" />
             </RelativeLayout>
@@ -96,30 +108,30 @@
                 android:id="@+id/home_ry_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp" />
+                android:layout_margin="@dimen/dp_10" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp">
+                android:layout_height="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="#1c2243">
 
                 <ImageView
                     android:id="@+id/imageView_show1"
-                    android:layout_width="29dp"
-                    android:layout_height="29dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/jj" />
+                    android:layout_width="@dimen/dp_29"
+                    android:layout_height="@dimen/dp_29"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:src="@drawable/shangying" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/dp_10"
                     android:layout_toRightOf="@id/imageView_show1"
                     android:text="即将上映"
                     android:textColor="#fff"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/sp_18" />
 
                 <TextView
                     android:id="@+id/home_sy_duo"
@@ -127,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/dp_20"
                     android:text="更多"
                     android:textColor="#fff" />
             </RelativeLayout>
@@ -136,30 +148,30 @@
                 android:id="@+id/home_sy_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp" />
+                android:layout_margin="@dimen/dp_10" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp">
+                android:layout_height="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="#1c2243">
 
                 <ImageView
                     android:id="@+id/imageView_show2"
-                    android:layout_width="29dp"
-                    android:layout_height="29dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/rm" />
+                    android:layout_width="@dimen/dp_29"
+                    android:layout_height="@dimen/dp_29"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:src="@drawable/remen" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/dp_10"
                     android:layout_toRightOf="@id/imageView_show2"
                     android:text="热门电影"
                     android:textColor="#fff"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/sp_18" />
 
                 <TextView
                     android:id="@+id/home_rm_duo"
@@ -167,16 +179,15 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/dp_20"
                     android:text="更多"
                     android:textColor="#fff" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="@dimen/dp_312"
-                android:layout_height="@dimen/dp_120"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_height="@dimen/dp_130"
+                android:layout_margin="@dimen/dp_10">
 
                 <ImageView
                     android:id="@+id/pop_img"
@@ -189,18 +200,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/dp_10"
                     android:text="aaaa"
                     android:textColor="@android:color/white"
-                    android:textSize="22dp"
+                    android:textSize="@dimen/sp_22"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/pop_pf"
                     android:layout_width="wrap_content"
-                    android:layout_height="21dp"
+                    android:layout_height="@dimen/dp_21"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/dp_10"
                     android:layout_toRightOf="@id/pop_name"
                     android:lines="1"
                     android:text="aaaa"
@@ -208,14 +219,14 @@
 
                 <Button
                     android:id="@+id/pop_btn_gp"
-                    android:layout_width="45dp"
-                    android:layout_height="21dp"
+                    android:layout_width="@dimen/dp_45"
+                    android:layout_height="@dimen/dp_21"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="@dimen/dp_15"
                     android:background="@drawable/shape"
                     android:text="购票"
-                    android:textSize="15dp" />
+                    android:textSize="@dimen/sp_15" />
 
             </RelativeLayout>
 
@@ -223,8 +234,7 @@
                 android:id="@+id/home_rm_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp" />
+                android:layout_margin="@dimen/dp_10" />
 
         </LinearLayout>
 

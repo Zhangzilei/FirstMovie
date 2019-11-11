@@ -59,6 +59,7 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/my_ziliao"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_46"
             android:layout_alignParentRight="true"
@@ -93,6 +94,7 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/my_dianyingpiao"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_20"
             android:layout_alignParentRight="true"
@@ -107,13 +109,13 @@
 
     <LinearLayout
         android:layout_width="@dimen/dp_312"
-        android:layout_height="@dimen/dp_235"
+        android:layout_height="@dimen/dp_257"
         android:layout_marginTop="@dimen/dp_11"
         android:background="#1c2243"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dp_0"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_weight="3"
@@ -121,15 +123,16 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/my_guanzhu"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/dp_79"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:src="@drawable/group_2" />
 
                 <TextView
@@ -144,15 +147,16 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_movie"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/dp_79"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:src="@drawable/chongzhijilu" />
 
                 <TextView
@@ -167,15 +171,16 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_shezhi"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/dp_79"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:src="@drawable/shezhi" />
 
                 <TextView
@@ -192,22 +197,24 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_158"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_weight="3"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/my_yuyue"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="@dimen/dp_79"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:src="@drawable/group_4" />
 
                 <TextView
@@ -222,8 +229,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_pinglun"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/dp_79"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
@@ -231,6 +239,7 @@
                 <ImageView
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:src="@drawable/group_3" />
 
                 <TextView
@@ -248,22 +257,24 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_158"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_weight="3"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/my_goupiao"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="@dimen/dp_79"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:src="@drawable/goupiaojilu" />
 
                 <TextView
@@ -278,8 +289,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_fankui"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/dp_79"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
@@ -287,6 +299,7 @@
                 <ImageView
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:src="@drawable/yijianfankui_01" />
 
                 <TextView
