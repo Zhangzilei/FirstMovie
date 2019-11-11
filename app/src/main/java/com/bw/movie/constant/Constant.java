@@ -12,6 +12,11 @@ import com.bw.movie.model.bean.RegisterBean;
 
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
+import com.bw.movie.model.bean.YYGuanZhuBean;
+import com.bw.movie.model.bean.YYPingLunBean;
+import com.bw.movie.model.bean.YYXiangQingBean;
+import com.bw.movie.model.bean.YingYuanLieBiaoBean;
+import com.bw.movie.view.activity.YingYuanXiangQing;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -90,4 +95,48 @@ public interface Constant {
     //影院附近
     @GET("movieApi/tool/v2/findRegionList")
     Observable<CHaiLeftBean> FINDREGIONLIST();
+
+    //影院列表
+    @GET("movieApi/cinema/v2/findCinemaScheduleList")
+    Observable<YingYuanLieBiaoBean> FINDCINEMASCHEDULELIST(@Query("cinemaId")int cinemaId,
+                                                           @Query("page")int page,
+                                                           @Query("count")int count);
+    //影院详情
+    @GET("movieApi/cinema/v1/findCinemaInfo")
+    Observable<YYXiangQingBean> FINDCINEMAINFO(@Query("cinemaId")int cinemaId);
+
+    //关注影院
+    @GET("movieApi/cinema/v1/verify/followCinema")
+    Observable<YYGuanZhuBean> FOLLOWCINEMA(@Header("userId")int userId,
+                                           @Header("sessionId")String sessionId,
+                                           @Query("cinemaId")int cinemaId);
+
+    //取关影院
+    @GET("movieApi/cinema/v1/verify/cancelFollowCinema")
+    Observable<YYGuanZhuBean> CANCELFOLLOWCINEMA(@Header("userId")int userId,
+                                           @Header("sessionId")String sessionId,
+                                           @Query("cinemaId")int cinemaId);
+
+    //评论影院
+    @POST("movieApi/cinema/v1/verify/cinemaComment")
+    @FormUrlEncoded
+    Observable<YYGuanZhuBean> CINEMACOMMENT(@Header("userId")int userId,
+                                            @Header("sessionid")String sessionId,
+                                            @Field("cinemaId") int cinemaId,
+                                            @Field("commentContent") String commentContent);
+
+    //影院评论点赞
+    @POST("movieApi/cinema/v1/verify/cinemaCommentGreat")
+    @FormUrlEncoded
+    Observable<YYGuanZhuBean> CINEMACOMMENTGREAT(@Header("userId")int userId,
+                                            @Header("sessionid")String sessionId,
+                                            @Field("commentId") int commentId);
+
+    //影院评论列表
+    @GET("movieApi/cinema/v1/findAllCinemaComment")
+    Observable<YYPingLunBean> FINDALLCINEMACOMMENT(@Header("userId")int userId,
+                                                   @Header("sessionId")String sessionId,
+                                                   @Query("page")int page,
+                                                   @Query("count")int count,
+                                                   @Query("cinemaId")int cinemaId);
 }

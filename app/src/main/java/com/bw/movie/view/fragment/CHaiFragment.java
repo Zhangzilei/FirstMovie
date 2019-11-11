@@ -1,5 +1,6 @@
 package com.bw.movie.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.bw.movie.model.bean.CHaiLeftBean;
 import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.presenter.BasePresenter;
 import com.bw.movie.presenter.CHaiPresenter;
+import com.bw.movie.view.activity.YingYuanXiangQing;
 import com.bw.movie.view.adapter.CTuiJianAdapter;
 import com.bw.movie.view.adapter.LeftAdapter;
 import com.bw.movie.view.adapter.RightAdapter;
@@ -78,13 +80,21 @@ public class CHaiFragment extends BaseFragment<CHaiPresenter> implements Constra
                 Toast.makeText(getContext(), ""+isId, Toast.LENGTH_SHORT).show();
 
                 presenter.Right(isId);
+            }
+        });
 
-                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                rightre.setLayoutManager(linearLayoutManager);
-                rightAdapter = new RightAdapter();
-                rightre.setAdapter(rightAdapter);
+        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getContext());
+        linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
+        rightre.setLayoutManager(linearLayoutManager1);
+        rightAdapter = new RightAdapter();
+        rightre.setAdapter(rightAdapter);
 
+        rightAdapter.setRightBack(new RightAdapter.RightBack() {
+            @Override
+            public void onRightId(int rightid) {
+                Intent intent=new Intent(getActivity(), YingYuanXiangQing.class);
+                intent.putExtra("id",rightid+"");
+                getActivity().startActivity(intent);
             }
         });
     }
