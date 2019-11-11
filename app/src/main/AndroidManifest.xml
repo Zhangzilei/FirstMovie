@@ -33,6 +33,8 @@
         <activity android:name=".view.activity.DianYingPiaoActivity" />
         <activity android:name=".view.activity.ZiliaoActivity" />
         <activity android:name=".view.activity.MyXinxiActivity" />
+        <activity android:name=".view.activity.YingYuanXiangQing"></activity>
+        <activity android:name=".view.activity.LieBiaoActivity" />
         <activity android:name=".view.activity.BannerXiangActivity" />
         <activity android:name=".view.activity.HomePageActivity" />
         <activity android:name=".view.activity.RegisterActivity" />

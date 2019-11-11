@@ -43,6 +43,7 @@ public class CTuiJianAdapter extends RecyclerView.Adapter<CTuiJianAdapter.TuiJia
         tuiJianViewHoler.tuijianname.setText(list.get(i).name);
         Glide.with(tuiJianViewHoler.itemView.getContext()).load(list.get(i).logo)
                 .into(tuiJianViewHoler.tuijianimg);
+
     }
 
     @Override

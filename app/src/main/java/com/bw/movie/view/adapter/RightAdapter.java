@@ -41,6 +41,16 @@ public class RightAdapter extends RecyclerView.Adapter<RightAdapter.RightViewHod
     @Override
     public void onBindViewHolder(@NonNull RightViewHodler rightViewHoler, int i) {
         rightViewHoler.rightname.setText(list.get(i).name);
+
+        rightViewHoler.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rightBack != null) {
+                    rightBack.onRightId(list.get(i).id);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -57,4 +67,15 @@ public class RightAdapter extends RecyclerView.Adapter<RightAdapter.RightViewHod
             rightname = itemView.findViewById(R.id.rightname);
         }
     }
+
+    private RightBack rightBack;
+
+    public void setRightBack(RightBack rightBack) {
+        this.rightBack = rightBack;
+    }
+
+    public interface RightBack{
+        void onRightId(int rightid);
+    }
+
 }

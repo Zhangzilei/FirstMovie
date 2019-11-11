@@ -156,7 +156,7 @@ public class CinemaFragment extends Fragment implements AMapLocationListener {
         try {
             if (amapLocation != null) {
                 if (amapLocation.getErrorCode() == 0) {
-                    //定位成功回调信息，设置相关消息
+                    /*//定位成功回调信息，设置相关消息
                     //获取当前定位结果来源，如网络定位结果，详见定位类型表
                     Log.i("定位类型", amapLocation.getLocationType() + "");
                     Log.i("获取纬度", amapLocation.getLatitude() + "");
@@ -176,7 +176,7 @@ public class CinemaFragment extends Fragment implements AMapLocationListener {
                     Log.i("获取当前定位点的AOI信息", amapLocation.getAoiName());
                     Log.i("获取当前室内定位的建筑物Id", amapLocation.getBuildingId());
                     Log.i("获取当前室内定位的楼层", amapLocation.getFloor());
-                    Log.i("获取GPS的当前状态", amapLocation.getGpsAccuracyStatus() + "");
+                    Log.i("获取GPS的当前状态", amapLocation.getGpsAccuracyStatus() + "");*/
 
 
                     crb3.setText(amapLocation.getDistrict());

@@ -13,6 +13,10 @@ import com.bw.movie.model.bean.RegisterBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
 
+import com.bw.movie.model.bean.YYGuanZhuBean;
+import com.bw.movie.model.bean.YYPingLunBean;
+import com.bw.movie.model.bean.YYXiangQingBean;
+import com.bw.movie.model.bean.YingYuanLieBiaoBean;
 import com.bw.movie.view.interfaces.IBaseView;
 
 /**
@@ -76,5 +80,31 @@ public interface Constraint {
 
         void rightSuccess(CHaiRightBean rightBean);
         void rightError(String s);
+    }
+    //影院列表
+    interface YingYuanLieBiao extends IBaseView{
+        void liebiaoSuccess(YingYuanLieBiaoBean lieBiao);
+        void liebiaoError(String s);
+    }
+    //影院详情
+    interface YYXiangQingView extends IBaseView{
+        void xiangqingSuccess(YYXiangQingBean xiangQingBean);
+        void xiangqingError(String s);
+
+        void guanzhuSuccess(YYGuanZhuBean guanZhuBean);
+        void guanzhuError(String s);
+
+        void quguanSuccess(YYGuanZhuBean guanZhuBean);
+        void quguanError(String s);
+    }
+    //影院评论
+    interface YYPingJiaView extends IBaseView{
+        void pinglunSuccess(YYPingLunBean yyPingLunBean);
+        void pinglunError(String s);
+    }
+    //影院评论点赞
+    interface YYDianZanView extends IBaseView{
+        void dianzanSuccess(YYGuanZhuBean guanZhuBean);
+        void dianzanError(String s);
     }
 }

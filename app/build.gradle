@@ -41,6 +41,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -82,7 +83,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     //Xrecyclerview依赖
     implementation 'com.jcodecraeer:xrecyclerview:1.2.6'
+    //高德
     implementation files('libs/AMap_Location_V4.7.2_20190927.jar')
-
-
+    //tablayout
+    implementation 'com.android.support:design:28.0.0'
 }
