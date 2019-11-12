@@ -1,10 +1,8 @@
 package com.bw.movie.view.fragment;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -22,7 +20,6 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
@@ -30,9 +27,10 @@ import com.bw.movie.constraint.Constraint;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
+import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.presenter.HomePageViewPresenter;
-import com.bw.movie.view.activity.BannerXiangActivity;
+import com.bw.movie.view.activity.SearchActivity;
 import com.bw.movie.view.adapter.PopularRecycleAdapter;
 import com.bw.movie.view.adapter.ReYingRecycleAdapter;
 import com.bw.movie.view.adapter.ShangYingRecycleAdapter;
@@ -47,7 +45,7 @@ import java.util.List;
  * <p>创建时间：2019/11/7/007<p>
  * <p>更改时间：2019/11/7/007<p>
  */
-public class MovieFragment extends BaseFragment<HomePageViewPresenter> implements Constraint.IHomeMovie, AMapLocationListener {
+public class MovieFragment extends BaseFragment<HomePageViewPresenter> implements Constraint.IHomeMovie, AMapLocationListener, View.OnClickListener {
     private ImageView home_ding;
     private TextView home_ding_name;
     private ImageView home_sou;
@@ -113,7 +111,6 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
         mPopularRecycleAdapter = new PopularRecycleAdapter();
         home_rm_recycle.setAdapter(mPopularRecycleAdapter);
 
-
         presenter.homeBanner();
         presenter.reYing(true);
         presenter.shangYing(true);
@@ -152,6 +149,12 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
         pop_pf = (TextView) view.findViewById(R.id.pop_pf);
         pop_btn_gp = (Button) view.findViewById(R.id.pop_btn_gp);
 
+
+        home_sou.setOnClickListener(this);
+        home_re_duo.setOnClickListener(this);
+        home_rm_duo.setOnClickListener(this);
+        home_sy_duo.setOnClickListener(this);
+
 //        initView = true;
 
         //检查版本是否大于M
@@ -166,8 +169,6 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
             }
         }
         showLocation();
-
-
     }
 
     @Override
@@ -176,7 +177,7 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
 //            Toast.makeText(getContext(), bannerBeans.message, Toast.LENGTH_SHORT).show();
             final List<HomeBanner.ResultBean> result = homeBanner.result;
 
-            home_banner.setData(result,null);
+            home_banner.setData(result, null);
 
             home_banner.setmAdapter(new XBanner.XBannerAdapter() {
                 @Override
@@ -254,7 +255,7 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
 
     @Override
     public void popularError(String s) {
-
+        Log.i(TAG, "popularError: " + s);
     }
 
 
@@ -318,6 +319,27 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
             }
         } catch (Exception e) {
 
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.home_sou:
+                startActivity(new Intent(getContext(), SearchActivity.class));
+                break;
+
+            case R.id.home_re_duo:
+
+                break;
+
+            case R.id.home_rm_duo:
+
+                break;
+
+            case R.id.home_sy_duo:
+
+                break;
         }
     }
 }

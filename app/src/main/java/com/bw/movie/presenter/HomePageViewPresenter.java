@@ -4,6 +4,7 @@ import com.bw.movie.constraint.Constraint;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
+import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.http.HttpUtils;
 
@@ -108,5 +109,7 @@ public class HomePageViewPresenter extends BasePresenter<Constraint.IHomeMovie> 
                     }
                 });
     }
+
+
 
 }

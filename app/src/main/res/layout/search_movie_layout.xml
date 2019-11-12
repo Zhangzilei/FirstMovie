@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_312"
+    android:layout_height="@dimen/dp_121"
+    android:layout_marginTop="@dimen/dp_10"
+    android:background="#1c2243"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/search_movie_img"
+        android:layout_width="@dimen/dp_84"
+        android:layout_height="@dimen/dp_101"
+        android:layout_margin="@dimen/dp_10"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/search_movie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="片名"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/search_movie_dy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="导演: 落落"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/search_movie_yy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="主演: 落落"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_12" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/search_movie_pf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="评分: 落落"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <Button
+                android:id="@+id/search_movie_shop"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_25"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp_7"
+                android:background="@drawable/shape"
+                android:text="购票"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

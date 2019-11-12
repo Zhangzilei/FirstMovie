@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.FanKuiActivity"></activity>
+        <activity android:name=".view.activity.SearchActivity"></activity>
+        <activity android:name=".view.activity.FanKuiActivity" />
         <activity android:name=".view.activity.GouPiaoActivity" />
         <activity android:name=".view.activity.PingLunActivity" />
         <activity android:name=".view.activity.YuYueActivity" />
@@ -33,7 +34,7 @@
         <activity android:name=".view.activity.DianYingPiaoActivity" />
         <activity android:name=".view.activity.ZiliaoActivity" />
         <activity android:name=".view.activity.MyXinxiActivity" />
-        <activity android:name=".view.activity.YingYuanXiangQing"></activity>
+        <activity android:name=".view.activity.YingYuanXiangQing" />
         <activity android:name=".view.activity.LieBiaoActivity" />
         <activity android:name=".view.activity.BannerXiangActivity" />
         <activity android:name=".view.activity.HomePageActivity" />

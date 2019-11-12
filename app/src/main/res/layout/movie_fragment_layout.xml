@@ -31,18 +31,6 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_18" />
 
-        <EditText
-            android:id="@+id/home_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_42"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginRight="@dimen/dp_1"
-            android:layout_toRightOf="@id/home_ding_name"
-            android:background="@drawable/sou_shape"
-            android:hint="请输入搜索内容"
-            android:paddingLeft="@dimen/dp_20"
-            android:visibility="gone" />
-
         <ImageView
             android:id="@+id/home_sou"
             android:layout_width="@dimen/dp_37"

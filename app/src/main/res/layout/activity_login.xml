@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_25"
         android:layout_marginTop="@dimen/dp_27"
-        android:src="@mipmap/back" />
+        android:padding="@dimen/dp_10"
+        android:src="@drawable/back" />
 
     <EditText
         android:id="@+id/login_edit_user"

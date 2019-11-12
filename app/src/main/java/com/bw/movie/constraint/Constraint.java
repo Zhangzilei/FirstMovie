@@ -10,6 +10,7 @@ import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
 
+import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
 
@@ -68,43 +69,65 @@ public interface Constraint {
         void popularError(String s);
     }
 
+    //搜索
+    interface ISearchView extends IBaseView{
+        //搜索
+        void searchSuccess(SearchBean searchBean);
+
+        void searchError(String s);
+    }
+
     //附近和推荐
-    interface TuiJianView extends IBaseView{
+    interface TuiJianView extends IBaseView {
         void tuijianSuccess(CTuiJianBean cTuiJianBean);
+
         void tuijianError(String s);
     }
+
     //chaileft
-    interface CHaiView extends IBaseView{
+    interface CHaiView extends IBaseView {
         void leftSuccess(CHaiLeftBean leftBean);
+
         void leftError(String s);
 
         void rightSuccess(CHaiRightBean rightBean);
+
         void rightError(String s);
     }
+
     //影院列表
-    interface YingYuanLieBiao extends IBaseView{
+    interface YingYuanLieBiao extends IBaseView {
         void liebiaoSuccess(YingYuanLieBiaoBean lieBiao);
+
         void liebiaoError(String s);
     }
+
     //影院详情
-    interface YYXiangQingView extends IBaseView{
+    interface YYXiangQingView extends IBaseView {
         void xiangqingSuccess(YYXiangQingBean xiangQingBean);
+
         void xiangqingError(String s);
 
         void guanzhuSuccess(YYGuanZhuBean guanZhuBean);
+
         void guanzhuError(String s);
 
         void quguanSuccess(YYGuanZhuBean guanZhuBean);
+
         void quguanError(String s);
     }
+
     //影院评论
-    interface YYPingJiaView extends IBaseView{
+    interface YYPingJiaView extends IBaseView {
         void pinglunSuccess(YYPingLunBean yyPingLunBean);
+
         void pinglunError(String s);
     }
+
     //影院评论点赞
-    interface YYDianZanView extends IBaseView{
+    interface YYDianZanView extends IBaseView {
         void dianzanSuccess(YYGuanZhuBean guanZhuBean);
+
         void dianzanError(String s);
     }
 }

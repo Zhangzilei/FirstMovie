@@ -10,6 +10,7 @@ import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
 
+import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
 import com.bw.movie.model.bean.YYGuanZhuBean;
@@ -65,6 +66,12 @@ public interface Constant {
     @GET("movieApi/movie/v2/findReleaseMovieList")
     Observable<ReYingBean> RE_YING_BEAN(@Query("page") int page,
                                         @Query("count") int count);
+
+    //根据关键字查询电影
+    @GET("movieApi/movie/v2/findMovieByKeyword")
+    Observable<SearchBean> SEARCH_BEAN(@Query("keyword")String keyword,
+                                       @Query("page")int page,
+                                       @Query("count")int count);
 
 
     //即将上映
