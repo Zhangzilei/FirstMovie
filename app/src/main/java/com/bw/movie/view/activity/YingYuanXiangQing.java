@@ -2,6 +2,7 @@ package com.bw.movie.view.activity;
 
 import android.content.Intent;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -35,22 +36,24 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
     TextView yyname;
     @BindView(R.id.yyimg)
     ImageView yyimg;
+    @BindView(R.id.yyxq_back)
+    ImageView yyxq_back;
     @BindView(R.id.bq1)
     TextView bq1;
-    @BindView(R.id.bq2)
-    TextView bq2;
-    @BindView(R.id.bq3)
-    TextView bq3;
+    //    @BindView(R.id.bq2)
+//    TextView bq2;
+//    @BindView(R.id.bq3)
+//    TextView bq3;
     @BindView(R.id.yytab)
     TabLayout yytab;
     @BindView(R.id.yypage)
     ViewPager yypage;
-    boolean isFristClick=false;
-    private List<Fragment> list=new ArrayList<>();
+    boolean isFristClick = false;
+    private List<Fragment> list = new ArrayList<>();
 
     @Override
     void initData() {
-        Intent intent=getIntent();
+        Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         presenter.YYXiangQinga(Integer.valueOf(id));
 
@@ -76,13 +79,20 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
         yytab.getTabAt(0).setText("影院详情");
         yytab.getTabAt(1).setText("影院评价");
 
+        yyxq_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         yyimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isFristClick!=false){
-                    presenter.YYquguan(13766,"157329010384313766",Integer.valueOf(id));
-                }else {
-                    presenter.YYguanzhu(13766,"157329010384313766",Integer.valueOf(id));
+                if (isFristClick != false) {
+                    presenter.YYquguan(13766, "157329010384313766", Integer.valueOf(id));
+                } else {
+                    presenter.YYguanzhu(13766, "157329010384313766", Integer.valueOf(id));
                 }
             }
         });
@@ -106,7 +116,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
     @Override
     public void xiangqingSuccess(YYXiangQingBean xiangQingBean) {
-        Toast.makeText(this,xiangQingBean.result.name, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, xiangQingBean.result.name, Toast.LENGTH_SHORT).show();
         yyname.setText(xiangQingBean.result.name);
         bq1.setText(xiangQingBean.result.label);
 
@@ -114,10 +124,10 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
         String vehicleRoute = xiangQingBean.result.vehicleRoute;
         String phone = xiangQingBean.result.phone;
 
-        Map<String,String> map=new HashMap<>();
-        map.put("address",address);
-        map.put("vehic",vehicleRoute);
-        map.put("phone",phone);
+        Map<String, String> map = new HashMap<>();
+        map.put("address", address);
+        map.put("vehic", vehicleRoute);
+        map.put("phone", phone);
         EventBus.getDefault().postSticky(map);
 
     }
@@ -129,7 +139,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
     @Override
     public void guanzhuSuccess(YYGuanZhuBean guanZhuBean) {
-        isFristClick=true;
+        isFristClick = true;
         Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
     }
 
@@ -140,7 +150,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
     @Override
     public void quguanSuccess(YYGuanZhuBean guanZhuBean) {
-        isFristClick=false;
+        isFristClick = false;
         Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
     }
 

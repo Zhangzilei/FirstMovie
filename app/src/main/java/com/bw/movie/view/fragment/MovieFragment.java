@@ -30,6 +30,7 @@ import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.presenter.HomePageViewPresenter;
+import com.bw.movie.view.activity.GengDuoActivity;
 import com.bw.movie.view.activity.SearchActivity;
 import com.bw.movie.view.adapter.PopularRecycleAdapter;
 import com.bw.movie.view.adapter.ReYingRecycleAdapter;
@@ -68,7 +69,6 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
     private ReYingRecycleAdapter mReYingRecycleAdapter;
     private ShangYingRecycleAdapter mShangYingRecycleAdapter;
     private PopularRecycleAdapter mPopularRecycleAdapter;
-    private String mImageUrl;
 
 
 //    //fragment懒加载
@@ -330,15 +330,15 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
                 break;
 
             case R.id.home_re_duo:
-
+                startActivity(new Intent(getActivity(), GengDuoActivity.class));
                 break;
 
             case R.id.home_rm_duo:
-
+                startActivity(new Intent(getActivity(), GengDuoActivity.class));
                 break;
 
             case R.id.home_sy_duo:
-
+                startActivity(new Intent(getActivity(), GengDuoActivity.class));
                 break;
         }
     }
