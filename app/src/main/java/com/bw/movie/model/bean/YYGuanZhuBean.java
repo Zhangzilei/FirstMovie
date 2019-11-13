@@ -9,4 +9,5 @@ public class YYGuanZhuBean {
 
     public String message;
     public String status;
+    public boolean yyimgcheck;
 }

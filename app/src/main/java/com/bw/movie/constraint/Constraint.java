@@ -122,10 +122,7 @@ public interface Constraint {
         void pinglunSuccess(YYPingLunBean yyPingLunBean);
 
         void pinglunError(String s);
-    }
 
-    //影院评论点赞
-    interface YYDianZanView extends IBaseView {
         void dianzanSuccess(YYGuanZhuBean guanZhuBean);
 
         void dianzanError(String s);

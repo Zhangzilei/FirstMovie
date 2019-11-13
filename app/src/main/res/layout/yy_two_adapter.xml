@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_21">
 
-        <ImageView
+        <CheckBox
+            android:button="@null"
             android:id="@+id/twozan"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -76,7 +77,7 @@
 
     </RelativeLayout>
 
-    <view
+    <View
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_2"
         android:background="@android:color/white" />

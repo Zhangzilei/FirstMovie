@@ -13,7 +13,11 @@ import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
+import com.bw.movie.dao.DaoMaster;
+import com.bw.movie.dao.DaoSession;
+import com.bw.movie.dao.UserDao;
 import com.bw.movie.jiami.EncryptUtil;
+import com.bw.movie.model.bean.User;
 import com.bw.movie.model.bean.XLLoginBean;
 import com.bw.movie.presenter.LoginPresenter;
 
@@ -39,6 +43,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
     ImageView btnWei;
     private String mEncrypt;
     private String mEmail;
+    private UserDao mUserDao;
 
 
     //邮箱验证
@@ -77,9 +82,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
     @Override
     public void loginSuccess(XLLoginBean xlLoginBean) {
         if (xlLoginBean.status.equals("0000")) {
-//            Toast.makeText(this, xlLoginBean.message, Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(this,MainActivity.class));
 
+            mUserDao.deleteAll();
+
+            User user=new User();
+            user.setUserId(xlLoginBean.result.userId);
+            user.setSessionId(xlLoginBean.result.sessionId);
+            user.setEmail(xlLoginBean.result.userInfo.email);
+            user.setHeadPic(xlLoginBean.result.userInfo.headPic);
+            user.setNickName(xlLoginBean.result.userInfo.nickName);
+            user.setSex(xlLoginBean.result.userInfo.sex);
+
+            mUserDao.insertOrReplace(user);
         } else {
             Toast.makeText(this, xlLoginBean.message, Toast.LENGTH_SHORT).show();
         }
@@ -92,8 +106,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
 
     @Override
     void initData() {
-
-
+        DaoSession daoSession = DaoMaster.newDevSession(this, UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
     }
 
     @Override

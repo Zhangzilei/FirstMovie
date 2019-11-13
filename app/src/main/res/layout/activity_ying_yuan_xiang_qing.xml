@@ -55,7 +55,8 @@
             android:textSize="@dimen/sp_14"
             android:textStyle="bold" />
 
-        <ImageView
+        <CheckBox
+            android:button="@null"
             android:id="@+id/yyimg"
             android:layout_width="20dp"
             android:layout_height="18.8dp"
