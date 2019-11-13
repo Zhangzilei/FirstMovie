@@ -1,5 +1,6 @@
 package com.bw.movie.view.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ShangYingBean;
+import com.bw.movie.view.activity.MovieDetailsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,6 +54,15 @@ public class PopularRecycleAdapter extends RecyclerView.Adapter<PopularRecycleAd
                 .load(mList.get(i).imageUrl)
                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
                 .into(popularViewHolder.pop_last_img);
+
+        popularViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(popularViewHolder.itemView.getContext(), MovieDetailsActivity.class);
+                intent.putExtra("movieId", mList.get(i).movieId);
+                popularViewHolder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

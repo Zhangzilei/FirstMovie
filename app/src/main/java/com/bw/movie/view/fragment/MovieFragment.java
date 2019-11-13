@@ -31,6 +31,7 @@ import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.presenter.HomePageViewPresenter;
 import com.bw.movie.view.activity.GengDuoActivity;
+import com.bw.movie.view.activity.MovieDetailsActivity;
 import com.bw.movie.view.activity.SearchActivity;
 import com.bw.movie.view.adapter.PopularRecycleAdapter;
 import com.bw.movie.view.adapter.ReYingRecycleAdapter;
@@ -243,6 +244,15 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
             Glide.with(getActivity()).load(popularMovieBean.result.get(0).horizontalImage)
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
                     .into(pop_img);
+
+            pop_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
+                    intent.putExtra("movieId", popularMovieBean.result.get(0).movieId);
+                    getContext().startActivity(intent);
+                }
+            });
 
 //            Toast.makeText(getContext(), popularMovieBean.message, Toast.LENGTH_SHORT).show();
             mPopularRecycleAdapter.addAdd(popularMovieBean.result);

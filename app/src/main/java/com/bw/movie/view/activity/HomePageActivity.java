@@ -2,9 +2,13 @@ package com.bw.movie.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import com.bw.movie.R;
 import com.bw.movie.view.fragment.CinemaFragment;
@@ -13,6 +17,7 @@ import com.bw.movie.view.fragment.MyFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -27,57 +32,97 @@ public class HomePageActivity extends AppCompatActivity {
     RadioButton rb2;
     @BindView(R.id.rb3)
     RadioButton rb3;
+    @BindView(R.id.movie_lin)
+    LinearLayout movieLin;
+    @BindView(R.id.movie_img)
+    ImageView movieImg;
+    @BindView(R.id.movie_rel)
+    RelativeLayout movieRel;
+    @BindView(R.id.cinema_lin)
+    LinearLayout cinemaLin;
+    @BindView(R.id.cinema_img)
+    ImageView cinemaImg;
+    @BindView(R.id.cinema_rel)
+    RelativeLayout cinemaRel;
+    @BindView(R.id.my_lin)
+    LinearLayout myLin;
+    @BindView(R.id.my_img)
+    ImageView myImg;
+    @BindView(R.id.my_rel)
+    RelativeLayout myRel;
     private Unbinder mBind;
+    private MovieFragment mMovieFragment;
+    private CinemaFragment mCinemaFragment;
+    private MyFragment mMyFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         mBind = ButterKnife.bind(this);
 
-        MovieFragment movieFragment = new MovieFragment();
-        CinemaFragment cinemaFragment = new CinemaFragment();
-        MyFragment myFragment = new MyFragment();
+        mMovieFragment = new MovieFragment();
+        mCinemaFragment = new CinemaFragment();
+        mMyFragment = new MyFragment();
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.home_view_pager,movieFragment)
-                .add(R.id.home_view_pager,cinemaFragment)
-                .add(R.id.home_view_pager,myFragment)
-                .show(movieFragment)
-                .hide(cinemaFragment)
-                .hide(myFragment)
+                .add(R.id.home_view_pager, mMovieFragment)
+                .add(R.id.home_view_pager, mCinemaFragment)
+                .add(R.id.home_view_pager, mMyFragment)
+                .show(mMovieFragment)
+                .hide(mCinemaFragment)
+                .hide(mMyFragment)
                 .commit();
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rb1:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .show(movieFragment)
-                                .hide(cinemaFragment)
-                                .hide(myFragment)
-                                .commit();
-                        break;
-                    case R.id.rb2:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .show(cinemaFragment)
-                                .hide(movieFragment)
-                                .hide(myFragment)
-                                .commit();
-                        break;
-                    case R.id.rb3:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .show(myFragment)
-                                .hide(cinemaFragment)
-                                .hide(movieFragment)
-                                .commit();
-                        break;
-                }
-            }
-        });
 
+    }
+
+    @OnClick({R.id.movie_rel, R.id.cinema_rel, R.id.my_rel})
+    public void onBtn(View view) {
+        movieLin.setVisibility(View.GONE);
+        cinemaLin.setVisibility(View.GONE);
+        myLin.setVisibility(View.GONE);
+
+        movieImg.setVisibility(View.VISIBLE);
+        cinemaImg.setVisibility(View.VISIBLE);
+        myImg.setVisibility(View.VISIBLE);
+
+        if (view.getId() == R.id.movie_rel) {
+
+            movieLin.setVisibility(View.VISIBLE);
+            movieImg.setVisibility(View.GONE);
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(mMovieFragment)
+                    .hide(mCinemaFragment)
+                    .hide(mMyFragment)
+                    .commit();
+
+        } else if (view.getId() == R.id.cinema_rel) {
+
+            cinemaLin.setVisibility(View.VISIBLE);
+            cinemaImg.setVisibility(View.GONE);
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(mCinemaFragment)
+                    .hide(mMovieFragment)
+                    .hide(mMyFragment)
+                    .commit();
+
+        } else if (view.getId() == R.id.my_rel) {
+
+            myLin.setVisibility(View.VISIBLE);
+            myImg.setVisibility(View.GONE);
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(mMyFragment)
+                    .hide(mCinemaFragment)
+                    .hide(mMovieFragment)
+                    .commit();
+
+        }
     }
 
 

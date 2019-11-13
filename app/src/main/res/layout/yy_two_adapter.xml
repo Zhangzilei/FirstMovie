@@ -76,7 +76,7 @@
 
     </RelativeLayout>
 
-    <view
+    <View
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_2"
         android:background="@android:color/white" />

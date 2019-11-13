@@ -34,8 +34,9 @@
         android:layout_width="@dimen/dp_45"
         android:layout_height="@dimen/dp_21"
         android:layout_marginTop="@dimen/dp_10"
-        android:background="@drawable/shape"
+        android:background="@drawable/movie_btn_bg_selector"
         android:text="购票"
-        android:textSize="@dimen/sp_15" />
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12" />
 
 </LinearLayout>

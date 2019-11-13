@@ -1,6 +1,7 @@
 package com.bw.movie.presenter;
 
 import com.bw.movie.constraint.Constraint;
+import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YingYuanLieBiaoBean;
 import com.bw.movie.model.http.HttpUtils;
@@ -29,6 +30,24 @@ public class YYPingLunPresenter extends BasePresenter<Constraint.YYPingJiaView> 
                     public void accept(Throwable throwable) throws Exception {
                         throwable.printStackTrace();
                         getView().pinglunError(throwable.getMessage());
+                    }
+                });
+    }
+
+    public void YYdianzan(int userId,String sessionId,int commentId){
+        HttpUtils.getInstance().getConstant().CINEMACOMMENTGREAT(userId,sessionId,commentId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<YYGuanZhuBean>() {
+                    @Override
+                    public void accept(YYGuanZhuBean guanZhuBean) throws Exception {
+                        getView().dianzanSuccess(guanZhuBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                        getView().dianzanError(throwable.getMessage());
                     }
                 });
     }

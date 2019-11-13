@@ -90,9 +90,9 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
             @Override
             public void onClick(View v) {
                 if (isFristClick != false) {
-                    presenter.YYquguan(13766, "157329010384313766", Integer.valueOf(id));
+                    presenter.YYquguan(13768, "157362466284113768", Integer.valueOf(id));
                 } else {
-                    presenter.YYguanzhu(13766, "157329010384313766", Integer.valueOf(id));
+                    presenter.YYguanzhu(13768, "157362466284113768", Integer.valueOf(id));
                 }
             }
         });

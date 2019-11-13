@@ -6,6 +6,7 @@ import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
+import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
@@ -69,8 +70,15 @@ public interface Constraint {
         void popularError(String s);
     }
 
+    //电影详情
+    interface IMovieXqView extends IBaseView {
+        void movieXQSuccess(MovieXqBean movieXqBean);
+
+        void movieXQError(String s);
+    }
+
     //搜索
-    interface ISearchView extends IBaseView{
+    interface ISearchView extends IBaseView {
         //搜索
         void searchSuccess(SearchBean searchBean);
 
@@ -122,12 +130,12 @@ public interface Constraint {
         void pinglunSuccess(YYPingLunBean yyPingLunBean);
 
         void pinglunError(String s);
-    }
 
-    //影院评论点赞
-    interface YYDianZanView extends IBaseView {
+        //影院评论点赞
         void dianzanSuccess(YYGuanZhuBean guanZhuBean);
 
         void dianzanError(String s);
     }
+
+
 }

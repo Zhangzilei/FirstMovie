@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
+import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.presenter.YYPingLunPresenter;
 import com.bw.movie.view.adapter.YYTwoFragmentAdapter;
@@ -67,5 +68,15 @@ public class YYTwoFragment extends BaseFragment<YYPingLunPresenter> implements C
     @Override
     public void pinglunError(String s) {
         Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void dianzanSuccess(YYGuanZhuBean guanZhuBean) {
+        Toast.makeText(getContext(), guanZhuBean.message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void dianzanError(String s) {
+
     }
 }
