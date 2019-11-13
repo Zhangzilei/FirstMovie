@@ -7,9 +7,14 @@ import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
+import com.bw.movie.dao.DaoMaster;
+import com.bw.movie.dao.DaoSession;
+import com.bw.movie.dao.UserDao;
+import com.bw.movie.model.bean.User;
 import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.presenter.YYPingLunPresenter;
+import com.bw.movie.view.activity.YingYuanXiangQing;
 import com.bw.movie.view.adapter.YYTwoFragmentAdapter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -23,18 +28,47 @@ import java.util.List;
 public class YYTwoFragment extends BaseFragment<YYPingLunPresenter> implements Constraint.YYPingJiaView {
     private XRecyclerView twoxrecycler;
     private YYTwoFragmentAdapter twoFragmentAdapter;
+    private UserDao mUserDao;
+    private String sessionId;
+    private int userId;
 
     @Override
     void initData() {
 
+        DaoSession daoSession = DaoMaster.newDevSession(getActivity(), UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
+
+        List<User> users = mUserDao.loadAll();
+        for (int i = 0; i < users.size(); i++) {
+            sessionId = users.get(i).getSessionId();
+            userId = users.get(i).getUserId();
+        }
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         twoxrecycler.setLayoutManager(linearLayoutManager);
         twoFragmentAdapter = new YYTwoFragmentAdapter();
         twoxrecycler.setAdapter(twoFragmentAdapter);
+        twoFragmentAdapter.notifyDataSetChanged();
 
-        presenter.PingJia(13766,"157329010384313766",1,1,5);
+        twoFragmentAdapter.setDianZanBack(new YYTwoFragmentAdapter.DianZanBack() {
+            @Override
+            public void onZanBack(int zanId) {
+                if (userId!=0){
+                    presenter.YYdianzan(userId,sessionId,zanId);
+                }else {
+                    Toast.makeText(getContext(), "请先登录哇~", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        if(userId!=0){
+            presenter.PingJia(userId,sessionId,1,1,5);
+        }else {
+            presenter.PingJia(0,null,1,1,5);
+        }
+
     }
 
     @Override
@@ -77,6 +111,6 @@ public class YYTwoFragment extends BaseFragment<YYPingLunPresenter> implements C
 
     @Override
     public void dianzanError(String s) {
-
+        Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
     }
 }

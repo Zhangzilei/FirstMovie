@@ -5,13 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
-import com.bw.movie.constraint.Constraint;
-import com.bw.movie.model.bean.YYGuanZhuBean;
+import com.bw.movie.app.XLApp;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -25,10 +25,10 @@ import java.util.List;
  * author:张自磊(lenovo)
  * function:
  */
-public class YYTwoFragmentAdapter extends XRecyclerView.Adapter<YYTwoFragmentAdapter.TwoViewHodler> implements Constraint.YYDianZanView {
+public class YYTwoFragmentAdapter extends XRecyclerView.Adapter<YYTwoFragmentAdapter.TwoViewHodler> {
 
     private List<YYPingLunBean.ResultBean> list=new ArrayList<>();
-    private YYDianZanPresenter yyDianZanPresenter;
+    private boolean isChecked=false;
 
     public void onAddAll(List<YYPingLunBean.ResultBean> li){
         if (li != null) {
@@ -39,8 +39,7 @@ public class YYTwoFragmentAdapter extends XRecyclerView.Adapter<YYTwoFragmentAda
     @NonNull
     @Override
     public TwoViewHodler onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View inflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.yy_two_adapter, viewGroup, false);
-        yyDianZanPresenter = new YYDianZanPresenter();
+        View inflate = LayoutInflater.from(XLApp.sContext).inflate(R.layout.yy_two_adapter, viewGroup,false);
         return new TwoViewHodler(inflate);
     }
 
@@ -58,7 +57,15 @@ public class YYTwoFragmentAdapter extends XRecyclerView.Adapter<YYTwoFragmentAda
         twoViewHodler.twozan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                yyDianZanPresenter.YYdianzan(13766,"157329010384313766",list.get(i).commentId);
+                if (twoViewHodler.twozan.isChecked()){
+                    twoViewHodler.twozan.setChecked(isChecked);
+                }else {
+                    if (dianZanBack != null) {
+                        isChecked=true;
+                        dianZanBack.onZanBack(list.get(i).commentId);
+                    }
+                }
+
             }
         });
 
@@ -69,18 +76,10 @@ public class YYTwoFragmentAdapter extends XRecyclerView.Adapter<YYTwoFragmentAda
         return list.size();
     }
 
-    @Override
-    public void dianzanSuccess(YYGuanZhuBean guanZhuBean) {
-    }
-
-    @Override
-    public void dianzanError(String s) {
-
-    }
-
     class TwoViewHodler extends RecyclerView.ViewHolder {
 
-        private final ImageView twoimg,twozan;
+        private final ImageView twoimg;
+        private final CheckBox twozan;
         private final TextView twoname,twopinglun,twotime;
 
         public TwoViewHodler(@NonNull View itemView) {
@@ -92,4 +91,15 @@ public class YYTwoFragmentAdapter extends XRecyclerView.Adapter<YYTwoFragmentAda
             twozan = itemView.findViewById(R.id.twozan);
         }
     }
+
+    private DianZanBack dianZanBack;
+
+    public void setDianZanBack(DianZanBack dianZanBack) {
+        this.dianZanBack = dianZanBack;
+    }
+
+    public interface DianZanBack{
+        void onZanBack(int zanId);
+    }
+
 }

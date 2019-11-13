@@ -8,12 +8,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
+import com.bw.movie.dao.DaoMaster;
+import com.bw.movie.dao.DaoSession;
+import com.bw.movie.dao.UserDao;
+import com.bw.movie.model.bean.User;
 import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
 import com.bw.movie.presenter.YYXiangQingPresenter;
@@ -35,7 +40,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
     @BindView(R.id.yyname)
     TextView yyname;
     @BindView(R.id.yyimg)
-    ImageView yyimg;
+    CheckBox yyimg;
     @BindView(R.id.yyxq_back)
     ImageView yyxq_back;
     @BindView(R.id.bq1)
@@ -48,13 +53,27 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
     TabLayout yytab;
     @BindView(R.id.yypage)
     ViewPager yypage;
-    boolean isFristClick = false;
     private List<Fragment> list = new ArrayList<>();
+    private String id;
+    private boolean YYImgCheck;
+    private UserDao mUserDao;
+    private String sessionId;
+    private int userId;
 
     @Override
     void initData() {
+
+        DaoSession daoSession = DaoMaster.newDevSession(this, UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
+
+        List<User> users = mUserDao.loadAll();
+        for (int i = 0; i < users.size(); i++) {
+            sessionId = users.get(i).getSessionId();
+            userId = users.get(i).getUserId();
+        }
+
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        id = intent.getStringExtra("id");
         presenter.YYXiangQinga(Integer.valueOf(id));
 
         yytab.addTab(yytab.newTab());
@@ -86,18 +105,28 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
             }
         });
 
+        yyimg.setChecked(YYImgCheck);
+
         yyimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isFristClick != false) {
-                    presenter.YYquguan(13768, "157362466284113768", Integer.valueOf(id));
+                if (yyimg.isChecked()) {
+                    YYImgCheck = true;
+                    if (userId != 0) {
+                        presenter.YYguanzhu(userId, sessionId, Integer.valueOf(id));
+                    } else {
+                        Toast.makeText(YingYuanXiangQing.this, "请先登录哇~", Toast.LENGTH_SHORT).show();
+                    }
+                    yyimg.setChecked(YYImgCheck);
                 } else {
-                    presenter.YYguanzhu(13768, "157362466284113768", Integer.valueOf(id));
+                    YYImgCheck = false;
+                    presenter.YYquguan(userId, sessionId, Integer.valueOf(id));
+                    yyimg.setChecked(YYImgCheck);
                 }
             }
         });
-
     }
+
 
     @Override
     YYXiangQingPresenter getPresenter() {
@@ -139,7 +168,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
     @Override
     public void guanzhuSuccess(YYGuanZhuBean guanZhuBean) {
-        isFristClick = true;
+        guanZhuBean.yyimgcheck = true;
         Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
     }
 
@@ -150,7 +179,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
     @Override
     public void quguanSuccess(YYGuanZhuBean guanZhuBean) {
-        isFristClick = false;
+        guanZhuBean.yyimgcheck = false;
         Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
     }
 
@@ -158,5 +187,5 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
     public void quguanError(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
-
 }
+
