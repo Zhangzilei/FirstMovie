@@ -5,13 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:background="#141931"
     tools:context=".view.activity.MyXinxiActivity">
+    
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dp_36"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_21"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="25dp">
+        
+        <ImageView
+            android:id="@+id/xximg"
+            android:src="@drawable/back"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24" />
 
-    <TextView
-        android:text="消息"
-        android:textSize="@dimen/sp_48"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="系统消息"
+            android:layout_centerHorizontal="true"
+            android:textColor="#d8d8d8"
+            android:textSize="@dimen/sp_16" />
+        
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginRight="@dimen/dp_21"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_20"
+        android:id="@+id/xxrecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

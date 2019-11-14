@@ -94,6 +94,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
             user.setSex(xlLoginBean.result.userInfo.sex);
 
             mUserDao.insertOrReplace(user);
+
+            finish();
         } else {
             Toast.makeText(this, xlLoginBean.message, Toast.LENGTH_SHORT).show();
         }

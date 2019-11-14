@@ -14,6 +14,7 @@ import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
 
+import com.bw.movie.model.bean.XiaoXiBean;
 import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
@@ -126,5 +127,10 @@ public interface Constraint {
         void dianzanSuccess(YYGuanZhuBean guanZhuBean);
 
         void dianzanError(String s);
+    }
+    //用户消息
+    interface XiaoXiView extends IBaseView{
+        void xiaoxiSuccess(XiaoXiBean xiaoXiBean);
+        void xiaoxiError(String s);
     }
 }

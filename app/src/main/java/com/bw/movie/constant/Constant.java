@@ -13,6 +13,7 @@ import com.bw.movie.model.bean.RegisterBean;
 import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
+import com.bw.movie.model.bean.XiaoXiBean;
 import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
@@ -146,4 +147,11 @@ public interface Constant {
                                                    @Query("page")int page,
                                                    @Query("count")int count,
                                                    @Query("cinemaId")int cinemaId);
+
+    //用户消息
+    @GET("movieApi/tool/v1/verify/findAllSysMsgList")
+    Observable<XiaoXiBean> FINDALLSYSMSGLIST(@Header("userId")int userId,
+                                               @Header("sessionId")String sessionId,
+                                               @Query("page")int page,
+                                               @Query("count")int count);
 }
