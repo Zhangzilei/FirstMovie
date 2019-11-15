@@ -92,6 +92,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
             user.setHeadPic(xlLoginBean.result.userInfo.headPic);
             user.setNickName(xlLoginBean.result.userInfo.nickName);
             user.setSex(xlLoginBean.result.userInfo.sex);
+            user.setBirthDay("2000-01-01");
 
             mUserDao.insertOrReplace(user);
 

@@ -3,6 +3,8 @@ package com.bw.movie.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 /**
  * <p>文件描述：<p>
  * <p>作者：吴新仲<p>
@@ -17,5 +19,6 @@ public class XLApp extends Application {
     public void onCreate() {
         super.onCreate();
         sContext = this;
+        Fresco.initialize(this);
     }
 }

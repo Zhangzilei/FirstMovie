@@ -131,13 +131,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
             public void onClick(View v) {
 
                 if (yyimgcheck != true) {
-                    if (userId != 0) {
-                        presenter.YYguanzhu(userId, sessionId, Integer.valueOf(id));
-                    } else {
-                        Toast.makeText(YingYuanXiangQing.this, "请先登录哇~", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(YingYuanXiangQing.this, LoginActivity.class);
-                        startActivity(intent1);
-                    }
+                    presenter.YYguanzhu(userId, sessionId, Integer.valueOf(id));
                 } else {
                     presenter.YYquguan(userId, sessionId, Integer.valueOf(id));
                 }
@@ -198,6 +192,12 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
     @Override
     public void guanzhuSuccess(YYGuanZhuBean guanZhuBean) {
 
+        if(guanZhuBean.status.equals("9999")){
+            Toast.makeText(YingYuanXiangQing.this, "请先登录哇~", Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(YingYuanXiangQing.this, LoginActivity.class);
+            startActivity(intent1);
+        }
+
         edit.clear();
         edit.commit();
         if (guanZhuBean.status.equals("0000") || guanZhuBean.status.equals("1001")) {
@@ -229,13 +229,6 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
     @Override
     public void quguanError(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }
 

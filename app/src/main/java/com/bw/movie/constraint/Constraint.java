@@ -5,6 +5,8 @@ import com.bw.movie.model.bean.CHaiLeftBean;
 import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
+import com.bw.movie.model.bean.GuanZhuDianYingBean;
+import com.bw.movie.model.bean.GuanZhuYingYuanBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.PaiQiBean;
@@ -22,6 +24,7 @@ import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
 import com.bw.movie.model.bean.YingYuanLieBiaoBean;
+import com.bw.movie.model.bean.ZiLiaoBean;
 import com.bw.movie.view.interfaces.IBaseView;
 
 /**
@@ -154,5 +157,24 @@ public interface Constraint {
     interface PaiQiView extends IBaseView{
         void paiqiSuccess(PaiQiBean paiQiBean);
         void paiqiError(String s);
+    }
+
+    //个人资料
+    interface ZiLiaoView extends IBaseView{
+        void ziliaoSuccess(ZiLiaoBean ziLiaoBean);
+        void ziliaoError(String s);
+
+        void shengqiSuccess(YYGuanZhuBean guanZhuBean);
+        void shengqiError(String s);
+    }
+    //我的关注..影院
+    interface GuanZhuYingYuanView extends IBaseView{
+        void gzyySuccess(GuanZhuYingYuanBean gzyybean);
+        void gzyyError(String s);
+    }
+    //我的关注..电影
+    interface GuanZhuDianYingView extends IBaseView{
+        void gzdySuccess(GuanZhuDianYingBean gzdyBean);
+        void gzdyError(String s);
     }
 }
