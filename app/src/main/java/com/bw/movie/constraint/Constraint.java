@@ -8,6 +8,7 @@ import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.MovieXqYingpingBean;
+import com.bw.movie.model.bean.MovieYuYueBean;
 import com.bw.movie.model.bean.PaiQiBean;
 import com.bw.movie.model.bean.PaiQiTimeBean;
 import com.bw.movie.model.bean.PopularMovieBean;
@@ -67,6 +68,11 @@ public interface Constraint {
         void shangyingSuccess(ShangYingBean shangYingBean);
 
         void shangyingError(String s);
+
+        //预约
+        void yuyueSuccess(MovieYuYueBean movieYuYueBean);
+
+        void yuyueError(String s);
 
         //热门
         void popularSuccess(PopularMovieBean popularMovieBean);

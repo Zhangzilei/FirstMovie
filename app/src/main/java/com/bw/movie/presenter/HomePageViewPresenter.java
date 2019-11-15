@@ -2,6 +2,7 @@ package com.bw.movie.presenter;
 
 import com.bw.movie.constraint.Constraint;
 import com.bw.movie.model.bean.HomeBanner;
+import com.bw.movie.model.bean.MovieYuYueBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.SearchBean;
@@ -11,6 +12,8 @@ import com.bw.movie.model.http.HttpUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.http.Field;
+import retrofit2.http.Header;
 
 /**
  * <p>文件描述：<p>
@@ -64,13 +67,13 @@ public class HomePageViewPresenter extends BasePresenter<Constraint.IHomeMovie> 
     }
 
     //即将上映
-    public void shangYing(boolean isRefresh) {
+    public void shangYing(boolean isRefresh,String sessionId, int userId) {
         if (isRefresh)
             page = 1;
         else
             page++;
 
-        HttpUtils.getInstance().getConstant().SHANG_YING_BEAN(page, 7)
+        HttpUtils.getInstance().getConstant().SHANG_YING_BEAN(sessionId,userId,page, 7)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<ShangYingBean>() {
@@ -82,6 +85,24 @@ public class HomePageViewPresenter extends BasePresenter<Constraint.IHomeMovie> 
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         getView().shangyingError(throwable.getMessage());
+                    }
+                });
+    }
+
+    //预约
+    public void yuYue(String sessionId, int userId, int movieId){
+        HttpUtils.getInstance().getConstant().MOVIE_YU_YUE_BEAN(sessionId, userId, movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<MovieYuYueBean>() {
+                    @Override
+                    public void accept(MovieYuYueBean movieYuYueBean) throws Exception {
+                        getView().yuyueSuccess(movieYuYueBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        getView().yuyueError(throwable.getMessage());
                     }
                 });
     }

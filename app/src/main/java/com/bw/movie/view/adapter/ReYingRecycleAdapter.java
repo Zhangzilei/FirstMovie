@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.ReYingBean;
+import com.bw.movie.view.activity.AllGouPiaoActivity;
 import com.bw.movie.view.activity.MovieDetailsActivity;
 
 import java.util.ArrayList;
@@ -58,6 +59,13 @@ public class ReYingRecycleAdapter extends RecyclerView.Adapter<ReYingRecycleAdap
                 Intent intent = new Intent(reYingViewHolder.itemView.getContext(), MovieDetailsActivity.class);
                 intent.putExtra("movieId", mList.get(i).movieId);
                 reYingViewHolder.itemView.getContext().startActivity(intent);
+            }
+        });
+
+        reYingViewHolder.ry_btn_gp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reYingViewHolder.itemView.getContext().startActivity(new Intent(reYingViewHolder.itemView.getContext(), AllGouPiaoActivity.class));
             }
         });
     }

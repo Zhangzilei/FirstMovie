@@ -130,7 +130,7 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
                 Toast.makeText(this, "写评论", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.movie_details_xzgp:
-                Toast.makeText(this, "选座购票", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,AllGouPiaoActivity.class));
                 break;
         }
     }

@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ShangYingBean;
+import com.bw.movie.view.activity.AllGouPiaoActivity;
 import com.bw.movie.view.activity.MovieDetailsActivity;
 
 import java.text.SimpleDateFormat;
@@ -61,6 +62,13 @@ public class PopularRecycleAdapter extends RecyclerView.Adapter<PopularRecycleAd
                 Intent intent = new Intent(popularViewHolder.itemView.getContext(), MovieDetailsActivity.class);
                 intent.putExtra("movieId", mList.get(i).movieId);
                 popularViewHolder.itemView.getContext().startActivity(intent);
+            }
+        });
+
+        popularViewHolder.pop_last_btn_gp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popularViewHolder.itemView.getContext().startActivity(new Intent(popularViewHolder.itemView.getContext(), AllGouPiaoActivity.class));
             }
         });
     }

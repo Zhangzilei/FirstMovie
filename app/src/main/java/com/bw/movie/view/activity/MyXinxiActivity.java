@@ -1,7 +1,9 @@
 package com.bw.movie.view.activity;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
@@ -18,11 +20,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MyXinxiActivity extends BaseActivity<XiaoXiPresenter> implements Constraint.XiaoXiView {
 
     @BindView(R.id.xxrecycler)
     RecyclerView xxrecycler;
+    @BindView(R.id.xximg)
+    ImageView xximg;
     private UserDao mUserDao;
     private String sessionId;
     private int userId;
@@ -39,11 +44,11 @@ public class MyXinxiActivity extends BaseActivity<XiaoXiPresenter> implements Co
             userId = users.get(i).getUserId();
         }
 
-        presenter.XiaoXi(userId,sessionId,1,5);
+        presenter.XiaoXi(userId, sessionId, 1, 5);
 
         xiaoXiAdapter = new XiaoXiAdapter();
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MyXinxiActivity.this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyXinxiActivity.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         xxrecycler.setLayoutManager(linearLayoutManager);
         xxrecycler.setAdapter(xiaoXiAdapter);
@@ -75,5 +80,10 @@ public class MyXinxiActivity extends BaseActivity<XiaoXiPresenter> implements Co
     @Override
     public void xiaoxiError(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.xximg)
+    public void onViewClicked() {
+        finish();
     }
 }

@@ -23,13 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.AllGouPiaoActivity"></activity>
         <activity
             android:name=".view.activity.MovieDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".view.activity.PaiQiActivity"></activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.activity.PaiQiActivity" />
         <activity android:name=".view.activity.GengDuoActivity" />
         <activity android:name=".view.activity.SearchActivity" />
         <activity android:name=".view.activity.FanKuiActivity" />

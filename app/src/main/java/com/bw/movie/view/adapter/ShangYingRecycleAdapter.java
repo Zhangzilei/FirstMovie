@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.ShangYingBean;
+import com.bw.movie.view.activity.LoginActivity;
 import com.bw.movie.view.activity.MovieDetailsActivity;
 
 import java.text.SimpleDateFormat;
@@ -51,7 +52,7 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
         Date date = new Date(mList.get(i).releaseTime);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         shangYingViewHolder.sy_time.setText(simpleDateFormat.format(date));
-        shangYingViewHolder.sy_ren.setText(String.valueOf(mList.get(i).wantSeeNum+"想看"));
+        shangYingViewHolder.sy_ren.setText(String.valueOf(mList.get(i).wantSeeNum + "想看"));
         Glide.with(shangYingViewHolder.itemView.getContext())
                 .load(mList.get(i).imageUrl)
                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
@@ -66,22 +67,44 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
             }
         });
 
+        if (mList.get(i).whetherReserve == 1) {
+            shangYingViewHolder.sy_check_yy.setVisibility(View.GONE);
+            shangYingViewHolder.sy_check_yyy.setVisibility(View.VISIBLE);
+        } else {
+            shangYingViewHolder.sy_check_yyy.setVisibility(View.GONE);
+            shangYingViewHolder.sy_check_yy.setVisibility(View.VISIBLE);
+        }
+
+
         shangYingViewHolder.sy_check_yy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 shangYingViewHolder.sy_check_yy.setVisibility(View.GONE);
                 shangYingViewHolder.sy_check_yyy.setVisibility(View.VISIBLE);
+
+                if (mYuYue != null)
+                    mYuYue.movieYy(mList.get(i).movieId);
+
             }
         });
 
-        shangYingViewHolder.sy_check_yyy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shangYingViewHolder.sy_check_yyy.setVisibility(View.GONE);
-                shangYingViewHolder.sy_check_yy.setVisibility(View.VISIBLE);
-            }
-        });
+
+
     }
+
+
+    //接口回调
+    private YuYue mYuYue;
+
+    public void setYuYue(YuYue yuYue) {
+        mYuYue = yuYue;
+    }
+
+    public interface YuYue {
+        void movieYy(int mId);
+    }
+
 
     @Override
     public int getItemCount() {
@@ -94,7 +117,7 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
         private final TextView sy_name;
         private final TextView sy_time;
         private final TextView sy_ren;
-        private final Button sy_check_yy,sy_check_yyy;
+        private final Button sy_check_yy, sy_check_yyy;
 
         public ShangYingViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -2,6 +2,7 @@ package com.bw.movie.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
 import com.bw.movie.model.bean.MovieXqYingpingBean;
 import com.bw.movie.presenter.MovieXqYpPresenter;
+import com.bw.movie.view.adapter.MovieXqYpAdapter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 /**
@@ -22,6 +24,7 @@ public class YingpingFragment extends BaseFragment<MovieXqYpPresenter> implement
 
     private int mMovieId;
     private XRecyclerView movie_xq_yingping_recycle;
+    private MovieXqYpAdapter mMovieXqYpAdapter;
 
     @Override
     void initData() {
@@ -29,7 +32,12 @@ public class YingpingFragment extends BaseFragment<MovieXqYpPresenter> implement
         Intent intent = getActivity().getIntent();
         mMovieId = intent.getIntExtra("movieId", 0);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        movie_xq_yingping_recycle.setLayoutManager(layoutManager);
 
+        mMovieXqYpAdapter = new MovieXqYpAdapter();
+        movie_xq_yingping_recycle.setAdapter(mMovieXqYpAdapter);
 
 
         presenter.yp(mMovieId, true);
@@ -57,6 +65,14 @@ public class YingpingFragment extends BaseFragment<MovieXqYpPresenter> implement
     @Override
     public void movieXqYpSuccess(MovieXqYingpingBean movieXqYingpingBean) {
 
+        movie_xq_yingping_recycle.refreshComplete();
+        movie_xq_yingping_recycle.loadMoreComplete();
+        if (presenter.getPage() == 1){
+            mMovieXqYpAdapter.clear();
+        }
+
+        mMovieXqYpAdapter.addAll(movieXqYingpingBean.result);
+        mMovieXqYpAdapter.notifyDataSetChanged();
     }
 
     @Override

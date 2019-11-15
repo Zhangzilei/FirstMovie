@@ -1,5 +1,6 @@
 package com.bw.movie.view.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.PaiQiBean;
 import com.bw.movie.model.bean.SearchBean;
+import com.bw.movie.view.activity.AllGouPiaoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,14 @@ public class PaiQiAdapter extends RecyclerView.Adapter<PaiQiAdapter.PaiQiViewHod
         paiQiViewHodler.search_movie_yy.setText("主演 : " + resultBean.starring);
         paiQiViewHodler.search_movie_pf.setText(String.valueOf("评分 : " + resultBean.score + "分"));
         Glide.with(paiQiViewHodler.itemView.getContext()).load(resultBean.imageUrl).into(paiQiViewHodler.search_movie_img);
+
+        paiQiViewHodler.search_movie_shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                paiQiViewHodler.itemView.getContext().startActivity(new Intent(paiQiViewHodler.itemView.getContext(), AllGouPiaoActivity.class));
+            }
+        });
+
     }
 
     @Override

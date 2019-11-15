@@ -8,6 +8,7 @@ import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.MovieXqYingpingBean;
+import com.bw.movie.model.bean.MovieYuYueBean;
 import com.bw.movie.model.bean.PaiQiBean;
 import com.bw.movie.model.bean.PaiQiTimeBean;
 import com.bw.movie.model.bean.PopularMovieBean;
@@ -81,8 +82,17 @@ public interface Constant {
 
     //即将上映
     @GET("movieApi/movie/v2/findComingSoonMovieList")
-    Observable<ShangYingBean> SHANG_YING_BEAN(@Query("page") int page,
+    Observable<ShangYingBean> SHANG_YING_BEAN(@Header("sessionId") String sessionId,
+                                              @Header("userId") int userId,
+                                              @Query("page") int page,
                                               @Query("count") int count);
+
+    //预约
+    @FormUrlEncoded
+    @POST("movieApi/movie/v2/verify/reserve")
+    Observable<MovieYuYueBean> MOVIE_YU_YUE_BEAN(@Header("sessionId") String sessionId,
+                                                 @Header("userId") int userId,
+                                                 @Field("movieId") int movieId);
 
     //电影详情
     @GET("movieApi/movie/v2/findMoviesDetail")

@@ -4,6 +4,8 @@
     android:layout_height="@dimen/dp_130"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:background="#1c2243"
+    android:layout_marginTop="@dimen/dp_5"
     android:padding="@dimen/dp_10">
 
     <ImageView
@@ -49,7 +51,7 @@
         android:layout_height="@dimen/dp_21"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorFalse"
+        android:background="@drawable/movie_btn_red_shape"
         android:gravity="center"
         android:text="预约"
         android:textColor="@android:color/white"
@@ -59,10 +61,9 @@
         android:id="@+id/sy_check_yyy"
         android:layout_width="@dimen/dp_45"
         android:layout_height="@dimen/dp_21"
-        android:layout_below="@id/sy_ren"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorTrue"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/movie_btn_yellow_shape"
         android:gravity="center"
         android:text="已预约"
         android:textColor="@android:color/white"

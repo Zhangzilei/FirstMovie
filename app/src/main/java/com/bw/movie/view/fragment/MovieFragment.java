@@ -24,13 +24,20 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
+import com.bw.movie.dao.DaoMaster;
+import com.bw.movie.dao.DaoSession;
+import com.bw.movie.dao.UserDao;
 import com.bw.movie.model.bean.HomeBanner;
+import com.bw.movie.model.bean.MovieYuYueBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
+import com.bw.movie.model.bean.User;
 import com.bw.movie.presenter.HomePageViewPresenter;
+import com.bw.movie.view.activity.AllGouPiaoActivity;
 import com.bw.movie.view.activity.GengDuoActivity;
+import com.bw.movie.view.activity.LoginActivity;
 import com.bw.movie.view.activity.MovieDetailsActivity;
 import com.bw.movie.view.activity.SearchActivity;
 import com.bw.movie.view.adapter.PopularRecycleAdapter;
@@ -70,6 +77,9 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
     private ReYingRecycleAdapter mReYingRecycleAdapter;
     private ShangYingRecycleAdapter mShangYingRecycleAdapter;
     private PopularRecycleAdapter mPopularRecycleAdapter;
+    private UserDao mUserDao;
+    private String sessionId;
+    private int userId;
 
 
 //    //fragment懒加载
@@ -112,9 +122,25 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
         mPopularRecycleAdapter = new PopularRecycleAdapter();
         home_rm_recycle.setAdapter(mPopularRecycleAdapter);
 
+
+        mShangYingRecycleAdapter.setYuYue(new ShangYingRecycleAdapter.YuYue() {
+            @Override
+            public void movieYy(int mId) {
+                presenter.yuYue(sessionId, userId, mId);
+            }
+        });
+
+
         presenter.homeBanner();
         presenter.reYing(true);
-        presenter.shangYing(true);
+
+        if (sessionId == null && userId == 0) {
+            presenter.shangYing(true, "", 0);
+
+        } else {
+            presenter.shangYing(true, sessionId, userId);
+        }
+
         presenter.popular(true);
 
     }
@@ -126,7 +152,14 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
 
     @Override
     void initListener() {
+        DaoSession daoSession = DaoMaster.newDevSession(getActivity(), UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
 
+        List<User> users = mUserDao.loadAll();
+        for (int i = 0; i < users.size(); i++) {
+            sessionId = users.get(i).getSessionId();
+            userId = users.get(i).getUserId();
+        }
     }
 
     @Override
@@ -155,6 +188,7 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
         home_re_duo.setOnClickListener(this);
         home_rm_duo.setOnClickListener(this);
         home_sy_duo.setOnClickListener(this);
+        pop_btn_gp.setOnClickListener(this);
 
 //        initView = true;
 
@@ -236,6 +270,23 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
     }
 
     @Override
+    public void yuyueSuccess(MovieYuYueBean movieYuYueBean) {
+        if (movieYuYueBean.status.equals("0000")) {
+            Toast.makeText(getActivity(), movieYuYueBean.message, Toast.LENGTH_SHORT).show();
+        } else if (movieYuYueBean.status.equals("9999")){
+            
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+
+            Toast.makeText(getActivity(), movieYuYueBean.message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void yuyueError(String s) {
+
+    }
+
+    @Override
     public void popularSuccess(PopularMovieBean popularMovieBean) {
         if (popularMovieBean.status.equals("0000")) {
 
@@ -244,6 +295,7 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
             Glide.with(getActivity()).load(popularMovieBean.result.get(0).horizontalImage)
                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
                     .into(pop_img);
+
 
             pop_img.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -349,6 +401,10 @@ public class MovieFragment extends BaseFragment<HomePageViewPresenter> implement
 
             case R.id.home_sy_duo:
                 startActivity(new Intent(getActivity(), GengDuoActivity.class));
+                break;
+
+            case R.id.pop_btn_gp:
+                startActivity(new Intent(getActivity(), AllGouPiaoActivity.class));
                 break;
         }
     }
