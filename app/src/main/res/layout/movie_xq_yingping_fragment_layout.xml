@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#141931"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/twoimg"
+            android:layout_width="@dimen/dp_44"
+            android:layout_height="@dimen/dp_44"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/twoname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_6"
+            android:layout_toRightOf="@id/twoimg"
+            android:gravity="center"
+            android:text="hbjkkjjhgh"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_12" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/twoname"
+            android:layout_toRightOf="@id/twoimg"
+            android:isIndicator="false"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="2.5"
+            android:stepSize="0.5" />
+
+        <TextView
+            android:id="@+id/twotime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:text="ghjkl"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_14">
+
+        <TextView
+            android:id="@+id/twopinglun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gjhbkjnlkkjhjghvjhbkj"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_12" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_21">
+
+        <CheckBox
+            android:id="@+id/twozan"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/dianzan_selector"
+            android:button="@null" />
+
+        <TextView
+            android:id="@+id/henzan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="等3人觉得很赞"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_14" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_2"
+        android:background="@android:color/white" />
+
+</LinearLayout>

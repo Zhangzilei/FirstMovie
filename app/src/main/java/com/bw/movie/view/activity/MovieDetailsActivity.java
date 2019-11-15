@@ -1,22 +1,29 @@
 package com.bw.movie.view.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
 import com.bw.movie.constraint.Constraint;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.presenter.MovieXQPresenter;
+import com.bw.movie.view.adapter.MovieXqTabAdapter;
+import com.bw.movie.view.fragment.JieshaoFragment;
+import com.bw.movie.view.fragment.JuzhaoFragment;
+import com.bw.movie.view.fragment.YingpingFragment;
+import com.bw.movie.view.fragment.YugaoFragment;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,10 +69,18 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
     Button movieDetailsXzgp;
     private int mMovieId;
 
+    private ArrayList<String> mTitle = new ArrayList<>();
+    private ArrayList<Fragment> mList = new ArrayList<>();
+    private JieshaoFragment mJieshaoFragment;
+    private YugaoFragment mYugaoFragment;
+    private JuzhaoFragment mJuzhaoFragment;
+    private YingpingFragment mYingpingFragment;
+
     @Override
     void initData() {
         presenter.movieXQ(mMovieId);
     }
+
 
     @Override
     MovieXQPresenter getPresenter() {
@@ -76,6 +91,27 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
     void initListener() {
         Intent intent = getIntent();
         mMovieId = intent.getIntExtra("movieId", 0);
+
+        mTitle.add("介绍");
+        mTitle.add("预告");
+        mTitle.add("剧照");
+        mTitle.add("影评");
+
+        mJieshaoFragment = new JieshaoFragment();
+        mYugaoFragment = new YugaoFragment();
+        mJuzhaoFragment = new JuzhaoFragment();
+        mYingpingFragment = new YingpingFragment();
+
+        mList.add(mJieshaoFragment);
+        mList.add(mYugaoFragment);
+        mList.add(mJuzhaoFragment);
+        mList.add(mYingpingFragment);
+
+        movieDetailsTab.setupWithViewPager(movieDetailsViewPager);
+
+        MovieXqTabAdapter movieXqTabAdapter = new MovieXqTabAdapter(getSupportFragmentManager(), mTitle, mList);
+        movieDetailsViewPager.setAdapter(movieXqTabAdapter);
+
     }
 
     @Override
@@ -90,10 +126,13 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
                 finish();
                 break;
             case R.id.movie_details_yin:
+                movieDetailsLinShang.setVisibility(View.GONE);
                 break;
             case R.id.movie_details_xpl:
+                Toast.makeText(this, "写评论", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.movie_details_xzgp:
+                Toast.makeText(this, "选座购票", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -106,8 +145,8 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
 
             Glide.with(this).load(result.imageUrl).into(movieDetailsImg);
 
-            movieDetailsPf.setText(String.valueOf(result.score+"分"));
-            movieDetailsPl.setText(String.valueOf(result.commentNum+"条"));
+            movieDetailsPf.setText(String.valueOf(result.score + "分"));
+            movieDetailsPl.setText(String.valueOf(result.commentNum + "条"));
             movieDetailsName.setText(result.name);
             movieDetailsType.setText(result.movieType);
             movieDetailsTime.setText(result.duration);
