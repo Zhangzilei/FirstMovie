@@ -7,6 +7,9 @@ import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
+import com.bw.movie.model.bean.MovieXqYingpingBean;
+import com.bw.movie.model.bean.PaiQiBean;
+import com.bw.movie.model.bean.PaiQiTimeBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
@@ -15,6 +18,7 @@ import com.bw.movie.model.bean.SearchBean;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
 
+import com.bw.movie.model.bean.XiaoXiBean;
 import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
@@ -77,6 +81,13 @@ public interface Constraint {
         void movieXQError(String s);
     }
 
+    //影评
+    interface IMovieXqYpView extends IBaseView {
+        void movieXqYpSuccess(MovieXqYingpingBean movieXqYingpingBean);
+
+        void movieXqYpError(String s);
+    }
+
     //搜索
     interface ISearchView extends IBaseView {
         //搜索
@@ -137,5 +148,24 @@ public interface Constraint {
         void dianzanError(String s);
     }
 
+    //用户消息
+    interface XiaoXiView extends IBaseView {
+        void xiaoxiSuccess(XiaoXiBean xiaoXiBean);
 
+        void xiaoxiError(String s);
+    }
+
+    //排期时间
+    interface PaiQiTimeView extends IBaseView {
+        void paiqitimeSuccess(PaiQiTimeBean paiQiTimeBean);
+
+        void paiqitimeError(String s);
+    }
+
+    //排期
+    interface PaiQiView extends IBaseView {
+        void paiqiSuccess(PaiQiBean paiQiBean);
+
+        void paiqiError(String s);
+    }
 }

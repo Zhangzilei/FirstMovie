@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_11"
         android:singleLine="true"
-        android:text="aaaa"
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_10" />
 
@@ -28,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_4"
         android:singleLine="true"
-        android:text="aaaa"
         android:textColor="#999999"
         android:textSize="@dimen/sp_10" />
 

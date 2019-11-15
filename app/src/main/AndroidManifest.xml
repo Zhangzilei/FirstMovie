@@ -29,6 +29,7 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".view.activity.PaiQiActivity"></activity>
         <activity android:name=".view.activity.GengDuoActivity" />
         <activity android:name=".view.activity.SearchActivity" />
         <activity android:name=".view.activity.FanKuiActivity" />

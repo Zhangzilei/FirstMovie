@@ -50,7 +50,6 @@
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/dp_5"
             android:padding="@dimen/dp_5"
-            android:text="保利国际影城"
             android:textColor="#deffffff"
             android:textSize="@dimen/sp_14"
             android:textStyle="bold" />
@@ -86,7 +85,6 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:background="@drawable/yy_xiangqing_text_shap"
                 android:padding="@dimen/dp_7"
-                android:text="aaaa"
                 android:textColor="#d3af56"
                 android:textSize="@dimen/sp_12" />
 
@@ -147,9 +145,19 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/yypage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
         android:layout_marginLeft="@dimen/dp_24"
         android:layout_marginTop="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_24" />
+    
+    <Button
+        android:id="@+id/yybtnpaiqi"
+        android:text="查看该影院电影排期"
+        android:textColor="#ffffff"
+        android:background="#e8185e"
+        android:textSize="@dimen/sp_14"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40" />
 
 </LinearLayout>

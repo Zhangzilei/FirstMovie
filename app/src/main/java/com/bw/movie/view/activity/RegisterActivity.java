@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,9 +30,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @BindView(R.id.edit_pwd)
     EditText editPwd;
     @BindView(R.id.img_shan)
-    ImageView imgShan;
+    CheckBox imgShan;
     @BindView(R.id.img_yan)
-    ImageView imgYan;
+    CheckBox imgYan;
     @BindView(R.id.edit_yanzheng)
     EditText editYanzheng;
     @BindView(R.id.btn_yan)

@@ -1,6 +1,7 @@
 package com.bw.movie.view.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -29,8 +30,9 @@ public class BootPageActivity extends AppCompatActivity {
     @BindView(R.id.boot_page_radio_group)
     RadioGroup bootPageRadioGroup;
     private Unbinder mBind;
-    boolean isFrist;
     private List<Integer> mList = new ArrayList<>();
+    private SharedPreferences sp;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,17 @@ public class BootPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boot_page);
         mBind = ButterKnife.bind(this);
 
-        if(isFrist==false){
+        sp = getSharedPreferences("guanzhua",MODE_PRIVATE);
+        edit = sp.edit();
+
+        boolean isFrist = sp.getBoolean("isFrist", false);
+        if(isFrist){
+
+        }else {
             startActivity(new Intent(BootPageActivity.this, HomePageActivity.class));
             finish();
         }
+
 
         mList.add(R.drawable.boot_one);
         mList.add(R.drawable.boot_two);
@@ -97,7 +106,8 @@ public class BootPageActivity extends AppCompatActivity {
     @OnClick(R.id.btn_boot_page)
     public void onViewClicked() {
         Toast.makeText(this, "体验开始", Toast.LENGTH_SHORT).show();
-        isFrist=false;
+        edit.putBoolean("isFrist",true);
+        edit.commit();
         startActivity(new Intent(BootPageActivity.this, HomePageActivity.class));
         finish();
     }

@@ -53,6 +53,9 @@ public class CHaiFragment extends BaseFragment<CHaiPresenter> implements Constra
     @Override
     public void rightSuccess(CHaiRightBean rightBean) {
         List<CHaiRightBean.ResultBean> result = rightBean.result;
+
+        rightAdapter.onClear();
+
         rightAdapter.onAddAll(result);
 
         rightAdapter.notifyDataSetChanged();

@@ -49,9 +49,9 @@ public class JieshaoFragment extends BaseFragment<MovieXQPresenter> implements C
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         sq_yy_recycle.setLayoutManager(gridLayoutManager);
+
         mMovieXqJieshaoYyAapter = new MovieXqJieshaoYyAapter();
         sq_yy_recycle.setAdapter(mMovieXqJieshaoYyAapter);
-
 
         presenter.movieXQ(mMovieId);
     }
@@ -82,7 +82,9 @@ public class JieshaoFragment extends BaseFragment<MovieXQPresenter> implements C
     public void movieXQSuccess(MovieXqBean movieXqBean) {
         if (movieXqBean.status.equals("0000")) {
             xq_jianjie.setText(movieXqBean.result.summary);
+
             mMovieXqJieshaoDyAapter.addAll(movieXqBean.result.movieDirector);
+            mMovieXqJieshaoDyAapter.notifyDataSetChanged();
 
             mMovieXqJieshaoYyAapter.addAll(movieXqBean.result.movieActor);
             mMovieXqJieshaoYyAapter.notifyDataSetChanged();

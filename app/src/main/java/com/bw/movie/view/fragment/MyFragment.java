@@ -10,8 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.bw.movie.R;
+import com.bw.movie.dao.DaoMaster;
+import com.bw.movie.dao.DaoSession;
+import com.bw.movie.dao.UserDao;
+import com.bw.movie.model.bean.User;
 import com.bw.movie.view.activity.DianYingPiaoActivity;
 import com.bw.movie.view.activity.FanKuiActivity;
 import com.bw.movie.view.activity.GouPiaoActivity;
@@ -22,6 +28,8 @@ import com.bw.movie.view.activity.PingLunActivity;
 import com.bw.movie.view.activity.SheZhiActivity;
 import com.bw.movie.view.activity.YuYueActivity;
 import com.bw.movie.view.activity.ZiliaoActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +45,8 @@ import butterknife.Unbinder;
 public class MyFragment extends Fragment {
     @BindView(R.id.my_xinxi)
     ImageView myXinxi;
+    @BindView(R.id.my_text_name)
+    TextView mytextname;
     @BindView(R.id.my_head_ic)
     ImageView myHeadIc;
     @BindView(R.id.my_ziliao)
@@ -60,12 +70,27 @@ public class MyFragment extends Fragment {
     @BindView(R.id.my_fankui)
     LinearLayout myFankui;
     Unbinder unbinder;
+    private UserDao mUserDao;
+    private String headPic;
+    private String nickName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.my_fragment_layout, container, false);
         unbinder = ButterKnife.bind(this, view);
+        DaoSession daoSession = DaoMaster.newDevSession(getContext(), UserDao.TABLENAME);
+        mUserDao = daoSession.getUserDao();
+
+        List<User> users = mUserDao.loadAll();
+        for (int i = 0; i < users.size(); i++) {
+            headPic = users.get(i).getHeadPic();
+            nickName = users.get(i).getNickName();
+        }
+
+        Glide.with(getContext()).load(headPic).into(myHeadIc);
+        mytextname.setText(nickName);
+
         return view;
     }
 

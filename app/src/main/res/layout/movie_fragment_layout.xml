@@ -27,7 +27,6 @@
             android:layout_toRightOf="@id/home_ding"
             android:gravity="center"
             android:paddingLeft="@dimen/dp_10"
-            android:text="aaaa"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_18" />
 
@@ -189,7 +188,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:text="aaaa"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/sp_22"
                     android:textStyle="bold" />
@@ -202,7 +200,6 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_toRightOf="@id/pop_name"
                     android:lines="1"
-                    android:text="aaaa"
                     android:textColor="@android:color/white" />
 
                 <Button

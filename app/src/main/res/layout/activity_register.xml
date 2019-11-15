@@ -75,8 +75,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="60dp"
                     android:background="@drawable/cuo"
-                    android:button="@null"
-                    android:visibility="gone" />
+                    android:button="@null" />
 
                 <CheckBox
                     android:id="@+id/img_yan"
@@ -86,8 +85,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:background="@mipmap/login_icon_eye"
-                    android:button="@null"
-                    android:visibility="gone" />
+                    android:button="@null" />
 
             </RelativeLayout>
 

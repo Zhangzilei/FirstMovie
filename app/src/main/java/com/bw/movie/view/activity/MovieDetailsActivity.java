@@ -61,8 +61,6 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
     TabLayout movieDetailsTab;
     @BindView(R.id.movie_details_view_pager)
     ViewPager movieDetailsViewPager;
-    @BindView(R.id.movie_details_lin_xia)
-    LinearLayout movieDetailsLinXia;
     @BindView(R.id.movie_details_xpl)
     Button movieDetailsXpl;
     @BindView(R.id.movie_details_xzgp)

@@ -1,15 +1,17 @@
 package com.bw.movie.view.activity;
 
 import android.content.Intent;
-
-import android.graphics.Color;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,15 +55,26 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
     TabLayout yytab;
     @BindView(R.id.yypage)
     ViewPager yypage;
+    @BindView(R.id.dao)
+    TextView dao;
+    @BindView(R.id.line1)
+    RelativeLayout line1;
+    @BindView(R.id.yybtnpaiqi)
+    Button yybtnpaiqi;
     private List<Fragment> list = new ArrayList<>();
     private String id;
-    private boolean YYImgCheck;
     private UserDao mUserDao;
     private String sessionId;
     private int userId;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor edit;
+    private int id1;
 
     @Override
     void initData() {
+
+        sp = getSharedPreferences("guanzhua", MODE_PRIVATE);
+        edit = sp.edit();
 
         DaoSession daoSession = DaoMaster.newDevSession(this, UserDao.TABLENAME);
         mUserDao = daoSession.getUserDao();
@@ -81,6 +94,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
         list.add(new YYOneFragment());
         list.add(new YYTwoFragment());
+
         yypage.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
@@ -105,26 +119,40 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
             }
         });
 
-        yyimg.setChecked(YYImgCheck);
+        boolean yyimgcheck = sp.getBoolean("yyimgcheck", false);
+        if (yyimgcheck) {
+            yyimg.setChecked(yyimgcheck);
+        } else {
+            yyimg.setChecked(yyimgcheck);
+        }
 
         yyimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (yyimg.isChecked()) {
-                    YYImgCheck = true;
+
+                if (yyimgcheck != true) {
                     if (userId != 0) {
                         presenter.YYguanzhu(userId, sessionId, Integer.valueOf(id));
                     } else {
                         Toast.makeText(YingYuanXiangQing.this, "请先登录哇~", Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(YingYuanXiangQing.this, LoginActivity.class);
+                        startActivity(intent1);
                     }
-                    yyimg.setChecked(YYImgCheck);
                 } else {
-                    YYImgCheck = false;
                     presenter.YYquguan(userId, sessionId, Integer.valueOf(id));
-                    yyimg.setChecked(YYImgCheck);
                 }
             }
         });
+
+        yybtnpaiqi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(YingYuanXiangQing.this,PaiQiActivity.class);
+                intent1.putExtra("yyid",id1);
+                startActivity(intent1);
+            }
+        });
+
     }
 
 
@@ -148,6 +176,7 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
         Toast.makeText(this, xiangQingBean.result.name, Toast.LENGTH_SHORT).show();
         yyname.setText(xiangQingBean.result.name);
         bq1.setText(xiangQingBean.result.label);
+        id1 = xiangQingBean.result.id;
 
         String address = xiangQingBean.result.address;
         String vehicleRoute = xiangQingBean.result.vehicleRoute;
@@ -168,8 +197,15 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
     @Override
     public void guanzhuSuccess(YYGuanZhuBean guanZhuBean) {
-        guanZhuBean.yyimgcheck = true;
-        Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
+
+        edit.clear();
+        edit.commit();
+        if (guanZhuBean.status.equals("0000") || guanZhuBean.status.equals("1001")) {
+            yyimg.setChecked(true);
+            edit.putBoolean("yyimgcheck", true);
+            edit.commit();
+            Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -179,8 +215,15 @@ public class YingYuanXiangQing extends BaseActivity<YYXiangQingPresenter> implem
 
     @Override
     public void quguanSuccess(YYGuanZhuBean guanZhuBean) {
-        guanZhuBean.yyimgcheck = false;
-        Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
+
+        edit.clear();
+        edit.commit();
+        if (guanZhuBean.status.equals("0000")) {
+            yyimg.setChecked(false);
+            edit.putBoolean("yyimgcheck", false);
+            edit.commit();
+            Toast.makeText(this, guanZhuBean.message, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

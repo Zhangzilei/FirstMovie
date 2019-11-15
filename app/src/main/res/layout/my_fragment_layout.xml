@@ -48,6 +48,7 @@
             android:src="@mipmap/ic_launcher_round" />
 
         <TextView
+            android:id="@+id/my_text_name"
             android:layout_width="@dimen/dp_64"
             android:layout_height="@dimen/dp_46"
             android:layout_marginLeft="@dimen/dp_16"
