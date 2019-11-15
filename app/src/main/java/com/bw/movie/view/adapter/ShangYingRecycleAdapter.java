@@ -1,5 +1,6 @@
 package com.bw.movie.view.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 import com.bw.movie.model.bean.ShangYingBean;
+import com.bw.movie.view.activity.MovieDetailsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +56,31 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
                 .load(mList.get(i).imageUrl)
                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
                 .into(shangYingViewHolder.sy_img);
+
+        shangYingViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(shangYingViewHolder.itemView.getContext(), MovieDetailsActivity.class);
+                intent.putExtra("movieId", mList.get(i).movieId);
+                shangYingViewHolder.itemView.getContext().startActivity(intent);
+            }
+        });
+
+        shangYingViewHolder.sy_check_yy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shangYingViewHolder.sy_check_yy.setVisibility(View.GONE);
+                shangYingViewHolder.sy_check_yyy.setVisibility(View.VISIBLE);
+            }
+        });
+
+        shangYingViewHolder.sy_check_yyy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shangYingViewHolder.sy_check_yyy.setVisibility(View.GONE);
+                shangYingViewHolder.sy_check_yy.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -67,7 +94,7 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
         private final TextView sy_name;
         private final TextView sy_time;
         private final TextView sy_ren;
-        private final Button sy_btn_gp;
+        private final Button sy_check_yy,sy_check_yyy;
 
         public ShangYingViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,7 +102,8 @@ public class ShangYingRecycleAdapter extends RecyclerView.Adapter<ShangYingRecyc
             sy_name = itemView.findViewById(R.id.sy_name);
             sy_time = itemView.findViewById(R.id.sy_time);
             sy_ren = itemView.findViewById(R.id.sy_ren);
-            sy_btn_gp = itemView.findViewById(R.id.sy_btn_gp);
+            sy_check_yy = itemView.findViewById(R.id.sy_check_yy);
+            sy_check_yyy = itemView.findViewById(R.id.sy_check_yyy);
 
         }
     }

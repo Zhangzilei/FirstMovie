@@ -3,6 +3,7 @@
     android:layout_width="@dimen/dp_312"
     android:layout_height="@dimen/dp_121"
     android:layout_marginTop="@dimen/dp_10"
+    android:layout_gravity="center_horizontal"
     android:background="#1c2243"
     android:orientation="horizontal">
 
@@ -45,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:text="主演: 落落"
+            android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_12" />
 
@@ -67,7 +69,7 @@
                 android:layout_height="@dimen/dp_25"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/dp_7"
-                android:background="@drawable/shape"
+                android:background="@drawable/movie_btn_bg_selector"
                 android:text="购票"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/sp_12" />

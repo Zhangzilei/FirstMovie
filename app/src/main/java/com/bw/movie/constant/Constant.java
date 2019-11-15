@@ -6,6 +6,9 @@ import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
+import com.bw.movie.model.bean.MovieXqBean;
+import com.bw.movie.model.bean.PaiQiBean;
+import com.bw.movie.model.bean.PaiQiTimeBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
@@ -79,6 +82,10 @@ public interface Constant {
     @GET("movieApi/movie/v2/findComingSoonMovieList")
     Observable<ShangYingBean> SHANG_YING_BEAN(@Query("page") int page,
                                               @Query("count") int count);
+
+    //电影详情
+    @GET("movieApi/movie/v2/findMoviesDetail")
+    Observable<MovieXqBean> MOVIE_XQ_BEAN(@Query("movieId")int movieId);
 
     //影院推荐
     @GET("movieApi/cinema/v1/findRecommendCinemas")
@@ -154,4 +161,14 @@ public interface Constant {
                                                @Header("sessionId")String sessionId,
                                                @Query("page")int page,
                                                @Query("count")int count);
+
+    //电影排期时间
+    @GET("movieApi/tool/v2/findDateList")
+    Observable<PaiQiTimeBean> FINDDATELIST();
+
+    //电影排期
+    @GET("movieApi/cinema/v2/findCinemaScheduleList")
+    Observable<PaiQiBean> PAIQI(@Query("cinemaId")int cinemaId,
+                                @Query("page")int page,
+                                @Query("count")int count);
 }

@@ -58,6 +58,10 @@ public class RightAdapter extends RecyclerView.Adapter<RightAdapter.RightViewHod
         return list.size();
     }
 
+    public void onClear() {
+        list.clear();
+    }
+
     class RightViewHodler extends RecyclerView.ViewHolder {
 
         private final TextView rightname;

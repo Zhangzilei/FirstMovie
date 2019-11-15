@@ -6,6 +6,9 @@ import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.HomeBanner;
+import com.bw.movie.model.bean.MovieXqBean;
+import com.bw.movie.model.bean.PaiQiBean;
+import com.bw.movie.model.bean.PaiQiTimeBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
@@ -70,8 +73,15 @@ public interface Constraint {
         void popularError(String s);
     }
 
+    //电影详情
+    interface IMovieXqView extends IBaseView {
+        void movieXQSuccess(MovieXqBean movieXqBean);
+
+        void movieXQError(String s);
+    }
+
     //搜索
-    interface ISearchView extends IBaseView{
+    interface ISearchView extends IBaseView {
         //搜索
         void searchSuccess(SearchBean searchBean);
 
@@ -124,6 +134,7 @@ public interface Constraint {
 
         void pinglunError(String s);
 
+        //影院评论点赞
         void dianzanSuccess(YYGuanZhuBean guanZhuBean);
 
         void dianzanError(String s);
@@ -132,5 +143,16 @@ public interface Constraint {
     interface XiaoXiView extends IBaseView{
         void xiaoxiSuccess(XiaoXiBean xiaoXiBean);
         void xiaoxiError(String s);
+    }
+    //排期时间
+    interface PaiQiTimeView extends IBaseView{
+        void paiqitimeSuccess(PaiQiTimeBean paiQiTimeBean);
+        void paiqitimeError(String s);
+    }
+
+    //排期
+    interface PaiQiView extends IBaseView{
+        void paiqiSuccess(PaiQiBean paiQiBean);
+        void paiqiError(String s);
     }
 }

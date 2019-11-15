@@ -47,14 +47,32 @@
         android:textColor="@android:color/white" />
 
     <Button
-        android:id="@+id/sy_btn_gp"
+        android:id="@+id/sy_check_yy"
         android:layout_width="@dimen/dp_45"
         android:layout_height="@dimen/dp_21"
         android:layout_below="@id/sy_ren"
         android:layout_alignParentRight="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/shape"
+        android:background="@color/colorFalse"
+        android:button="@null"
+        android:gravity="center"
         android:text="预约"
-        android:textSize="@dimen/sp_15" />
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12" />
+
+    <Button
+        android:id="@+id/sy_check_yyy"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_21"
+        android:layout_below="@id/sy_ren"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorTrue"
+        android:button="@null"
+        android:gravity="center"
+        android:text="已预约"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12"
+        android:visibility="gone" />
 
 </RelativeLayout>
