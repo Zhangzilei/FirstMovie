@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Const
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login_img_back:
-                System.exit(0);
+                finish();
                 break;
             case R.id.login_btn_wang:
                 break;

@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_toRightOf="@id/tuijian_img"
-        android:text="aaaa"
         android:textColor="#fff"
         android:textSize="@dimen/sp_14" />
 
@@ -28,7 +27,6 @@
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_16"
         android:layout_toRightOf="@id/tuijian_img"
-        android:text="aaaa"
         android:textColor="#fff"
         android:textSize="@dimen/sp_12" />
 

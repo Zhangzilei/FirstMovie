@@ -75,7 +75,6 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:text="附近影院"
             android:textColor="#fff"
             android:textSize="@dimen/sp_14" />
     </RadioGroup>

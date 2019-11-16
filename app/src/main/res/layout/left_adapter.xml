@@ -9,7 +9,6 @@
         android:id="@+id/leftname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="大兴区"
         android:textColor="#fff"
         android:textSize="@dimen/sp_14" />
 

@@ -32,7 +32,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:text="fyghkjlkjkhjg"
                     android:textColor="#deffffff"
                     android:textSize="@dimen/sp_12" />
 
@@ -56,7 +55,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:text="fyghkjlkjkhjg"
                     android:textColor="#deffffff"
                     android:textSize="@dimen/sp_12" />
 

@@ -15,46 +15,41 @@
     <TextView
         android:id="@+id/sy_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/sy_img"
+        android:layout_height="@dimen/dp_21"
+        android:layout_above="@id/sy_time"
         android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_5"
         android:layout_toRightOf="@id/sy_img"
-        android:text="aaa"
         android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/sy_time"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_21"
-        android:layout_below="@id/sy_name"
+        android:layout_above="@id/sy_ren"
         android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/dp_5"
         android:layout_toRightOf="@id/sy_img"
         android:lines="1"
-        android:text="aaa"
         android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/sy_ren"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_21"
-        android:layout_below="@id/sy_time"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/sy_img"
         android:lines="1"
-        android:text="aaa"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/sy_check_yy"
         android:layout_width="@dimen/dp_45"
         android:layout_height="@dimen/dp_21"
-        android:layout_below="@id/sy_ren"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorFalse"
-        android:button="@null"
         android:gravity="center"
         android:text="预约"
         android:textColor="@android:color/white"
@@ -68,7 +63,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="5dp"
         android:background="@color/colorTrue"
-        android:button="@null"
         android:gravity="center"
         android:text="已预约"
         android:textColor="@android:color/white"

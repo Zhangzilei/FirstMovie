@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#141931"
     android:orientation="vertical">
 
@@ -10,24 +10,47 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/twoimg"
+            android:id="@+id/xq_yingping_img"
             android:layout_width="@dimen/dp_44"
             android:layout_height="@dimen/dp_44"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/twoname"
+            android:id="@+id/xq_yingping_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_6"
             android:layout_toRightOf="@id/twoimg"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_12" />
 
+        <RatingBar
+            android:id="@+id/xq_yingping_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xq_yingping_name"
+            android:layout_toRightOf="@id/xq_yingping_img"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:progressBackgroundTint="@android:color/white"
+            android:progressTint="@android:color/white"
+            android:rating="2.5"
+            android:stepSize="0.5" />
+
         <TextView
-            android:id="@+id/twotime"
+            android:id="@+id/xq_yingping_pf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xq_yingping_name"
+            android:layout_marginLeft="@dimen/dp_18"
+            android:layout_toRightOf="@id/xq_yingping_bar"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/xq_yingping_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -42,7 +65,7 @@
         android:layout_marginTop="@dimen/dp_14">
 
         <TextView
-            android:id="@+id/twopinglun"
+            android:id="@+id/xq_yingping_pinglun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
@@ -57,18 +80,27 @@
         android:layout_marginTop="@dimen/dp_21">
 
         <CheckBox
-            android:button="@null"
-            android:id="@+id/twozan"
+            android:id="@+id/xq_yingping_check_zan"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/dianzan_selector" />
+            android:background="@drawable/dianzan_selector"
+            android:button="@null" />
+
+        <TextView
+            android:id="@+id/xq_yingping_sum_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_7"
+            android:layout_toRightOf="@id/xq_yingping_check_zan"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_10" />
 
         <TextView
             android:id="@+id/henzan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="等3人觉得很赞"
+            android:text="等3人进行了回复"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp_14" />
 
@@ -78,6 +110,5 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_2"
         android:background="@android:color/white" />
-
 
 </LinearLayout>

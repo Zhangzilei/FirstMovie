@@ -9,6 +9,7 @@ import com.bw.movie.model.bean.GuanZhuDianYingBean;
 import com.bw.movie.model.bean.GuanZhuYingYuanBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
+import com.bw.movie.model.bean.MovieXqYingpingBean;
 import com.bw.movie.model.bean.PaiQiBean;
 import com.bw.movie.model.bean.PaiQiTimeBean;
 import com.bw.movie.model.bean.PopularMovieBean;
@@ -76,9 +77,9 @@ public interface Constant {
 
     //根据关键字查询电影
     @GET("movieApi/movie/v2/findMovieByKeyword")
-    Observable<SearchBean> SEARCH_BEAN(@Query("keyword")String keyword,
-                                       @Query("page")int page,
-                                       @Query("count")int count);
+    Observable<SearchBean> SEARCH_BEAN(@Query("keyword") String keyword,
+                                       @Query("page") int page,
+                                       @Query("count") int count);
 
 
     //即将上映
@@ -88,27 +89,34 @@ public interface Constant {
 
     //电影详情
     @GET("movieApi/movie/v2/findMoviesDetail")
-    Observable<MovieXqBean> MOVIE_XQ_BEAN(@Query("movieId")int movieId);
+    Observable<MovieXqBean> MOVIE_XQ_BEAN(@Query("movieId") int movieId);
+
+    //电影详情影评
+    @GET("movieApi/movie/v2/findAllMovieComment")
+    Observable<MovieXqYingpingBean> MOVIE_XQ_YINGPING_BEAN(@Query("movieId") int movieId,
+                                                           @Query("page") int page,
+                                                           @Query("count") int count);
+
 
     //影院推荐
     @GET("movieApi/cinema/v1/findRecommendCinemas")
-    Observable<CTuiJianBean> FINDRECOMMENDCINEMAS(@Header("userId")int userId,
-                                                  @Header("sessionId")String sessionId,
-                                                  @Query("page")int page,
-                                                  @Query("count")int count);
+    Observable<CTuiJianBean> FINDRECOMMENDCINEMAS(@Header("userId") int userId,
+                                                  @Header("sessionId") String sessionId,
+                                                  @Query("page") int page,
+                                                  @Query("count") int count);
 
     //影院附近
     @GET("movieApi/cinema/v1/findNearbyCinemas")
-    Observable<CTuiJianBean> FINDNEARBYCINEMAS(@Header("userId")int userId,
-                                                  @Header("sessionId")String sessionId,
-                                                  @Query("longitude")String longitude,
-                                                  @Query("latitude")String latitude,
-                                                  @Query("page")int page,
-                                                  @Query("count")int count);
+    Observable<CTuiJianBean> FINDNEARBYCINEMAS(@Header("userId") int userId,
+                                               @Header("sessionId") String sessionId,
+                                               @Query("longitude") String longitude,
+                                               @Query("latitude") String latitude,
+                                               @Query("page") int page,
+                                               @Query("count") int count);
 
     //影院海淀
     @GET("movieApi/cinema/v2/findCinemaByRegion")
-    Observable<CHaiRightBean> FINDCINEMABYREGION(@Query("regionId")int regionId);
+    Observable<CHaiRightBean> FINDCINEMABYREGION(@Query("regionId") int regionId);
 
     //影院附近
     @GET("movieApi/tool/v2/findRegionList")
@@ -116,54 +124,55 @@ public interface Constant {
 
     //影院列表
     @GET("movieApi/cinema/v2/findCinemaScheduleList")
-    Observable<YingYuanLieBiaoBean> FINDCINEMASCHEDULELIST(@Query("cinemaId")int cinemaId,
-                                                           @Query("page")int page,
-                                                           @Query("count")int count);
+    Observable<YingYuanLieBiaoBean> FINDCINEMASCHEDULELIST(@Query("cinemaId") int cinemaId,
+                                                           @Query("page") int page,
+                                                           @Query("count") int count);
+
     //影院详情
     @GET("movieApi/cinema/v1/findCinemaInfo")
-    Observable<YYXiangQingBean> FINDCINEMAINFO(@Query("cinemaId")int cinemaId);
+    Observable<YYXiangQingBean> FINDCINEMAINFO(@Query("cinemaId") int cinemaId);
 
     //关注影院
     @GET("movieApi/cinema/v1/verify/followCinema")
-    Observable<YYGuanZhuBean> FOLLOWCINEMA(@Header("userId")int userId,
-                                           @Header("sessionId")String sessionId,
-                                           @Query("cinemaId")int cinemaId);
+    Observable<YYGuanZhuBean> FOLLOWCINEMA(@Header("userId") int userId,
+                                           @Header("sessionId") String sessionId,
+                                           @Query("cinemaId") int cinemaId);
 
     //取关影院
     @GET("movieApi/cinema/v1/verify/cancelFollowCinema")
-    Observable<YYGuanZhuBean> CANCELFOLLOWCINEMA(@Header("userId")int userId,
-                                           @Header("sessionId")String sessionId,
-                                           @Query("cinemaId")int cinemaId);
+    Observable<YYGuanZhuBean> CANCELFOLLOWCINEMA(@Header("userId") int userId,
+                                                 @Header("sessionId") String sessionId,
+                                                 @Query("cinemaId") int cinemaId);
 
     //评论影院
     @POST("movieApi/cinema/v1/verify/cinemaComment")
     @FormUrlEncoded
-    Observable<YYGuanZhuBean> CINEMACOMMENT(@Header("userId")int userId,
-                                            @Header("sessionid")String sessionId,
+    Observable<YYGuanZhuBean> CINEMACOMMENT(@Header("userId") int userId,
+                                            @Header("sessionid") String sessionId,
                                             @Field("cinemaId") int cinemaId,
                                             @Field("commentContent") String commentContent);
 
     //影院评论点赞
     @POST("movieApi/cinema/v1/verify/cinemaCommentGreat")
     @FormUrlEncoded
-    Observable<YYGuanZhuBean> CINEMACOMMENTGREAT(@Header("userId")int userId,
-                                            @Header("sessionid")String sessionId,
-                                            @Field("commentId") int commentId);
+    Observable<YYGuanZhuBean> CINEMACOMMENTGREAT(@Header("userId") int userId,
+                                                 @Header("sessionid") String sessionId,
+                                                 @Field("commentId") int commentId);
 
     //影院评论列表
     @GET("movieApi/cinema/v1/findAllCinemaComment")
-    Observable<YYPingLunBean> FINDALLCINEMACOMMENT(@Header("userId")int userId,
-                                                   @Header("sessionId")String sessionId,
-                                                   @Query("page")int page,
-                                                   @Query("count")int count,
-                                                   @Query("cinemaId")int cinemaId);
+    Observable<YYPingLunBean> FINDALLCINEMACOMMENT(@Header("userId") int userId,
+                                                   @Header("sessionId") String sessionId,
+                                                   @Query("page") int page,
+                                                   @Query("count") int count,
+                                                   @Query("cinemaId") int cinemaId);
 
     //用户消息
     @GET("movieApi/tool/v1/verify/findAllSysMsgList")
-    Observable<XiaoXiBean> FINDALLSYSMSGLIST(@Header("userId")int userId,
-                                               @Header("sessionId")String sessionId,
-                                               @Query("page")int page,
-                                               @Query("count")int count);
+    Observable<XiaoXiBean> FINDALLSYSMSGLIST(@Header("userId") int userId,
+                                             @Header("sessionId") String sessionId,
+                                             @Query("page") int page,
+                                             @Query("count") int count);
 
     //电影排期时间
     @GET("movieApi/tool/v2/findDateList")
