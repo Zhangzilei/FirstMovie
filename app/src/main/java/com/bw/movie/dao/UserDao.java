@@ -30,7 +30,8 @@ public class UserDao extends AbstractDao<User, Long> {
         public final static Property Email = new Property(3, String.class, "email", false, "EMAIL");
         public final static Property HeadPic = new Property(4, String.class, "headPic", false, "HEAD_PIC");
         public final static Property NickName = new Property(5, String.class, "nickName", false, "NICK_NAME");
-        public final static Property Sex = new Property(6, int.class, "sex", false, "SEX");
+        public final static Property BirthDay = new Property(6, String.class, "birthDay", false, "BIRTH_DAY");
+        public final static Property Sex = new Property(7, int.class, "sex", false, "SEX");
     }
 
 
@@ -52,7 +53,8 @@ public class UserDao extends AbstractDao<User, Long> {
                 "\"EMAIL\" TEXT," + // 3: email
                 "\"HEAD_PIC\" TEXT," + // 4: headPic
                 "\"NICK_NAME\" TEXT," + // 5: nickName
-                "\"SEX\" INTEGER NOT NULL );"); // 6: sex
+                "\"BIRTH_DAY\" TEXT," + // 6: birthDay
+                "\"SEX\" INTEGER NOT NULL );"); // 7: sex
     }
 
     /** Drops the underlying database table. */
@@ -86,7 +88,12 @@ public class UserDao extends AbstractDao<User, Long> {
         if (nickName != null) {
             stmt.bindString(6, nickName);
         }
-        stmt.bindLong(7, entity.getSex());
+ 
+        String birthDay = entity.getBirthDay();
+        if (birthDay != null) {
+            stmt.bindString(7, birthDay);
+        }
+        stmt.bindLong(8, entity.getSex());
     }
 
     @Override
@@ -114,7 +121,12 @@ public class UserDao extends AbstractDao<User, Long> {
         if (nickName != null) {
             stmt.bindString(6, nickName);
         }
-        stmt.bindLong(7, entity.getSex());
+ 
+        String birthDay = entity.getBirthDay();
+        if (birthDay != null) {
+            stmt.bindString(7, birthDay);
+        }
+        stmt.bindLong(8, entity.getSex());
     }
 
     @Override
@@ -131,7 +143,8 @@ public class UserDao extends AbstractDao<User, Long> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // email
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // headPic
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // nickName
-            cursor.getInt(offset + 6) // sex
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // birthDay
+            cursor.getInt(offset + 7) // sex
         );
         return entity;
     }
@@ -144,7 +157,8 @@ public class UserDao extends AbstractDao<User, Long> {
         entity.setEmail(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setHeadPic(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setNickName(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setSex(cursor.getInt(offset + 6));
+        entity.setBirthDay(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setSex(cursor.getInt(offset + 7));
      }
     
     @Override

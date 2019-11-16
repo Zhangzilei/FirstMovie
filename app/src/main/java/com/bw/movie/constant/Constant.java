@@ -5,6 +5,8 @@ import com.bw.movie.model.bean.CHaiLeftBean;
 import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.model.bean.CTuiJianBean;
 import com.bw.movie.model.bean.EmailBean;
+import com.bw.movie.model.bean.GuanZhuDianYingBean;
+import com.bw.movie.model.bean.GuanZhuYingYuanBean;
 import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.MovieXqYingpingBean;
@@ -23,6 +25,7 @@ import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
 import com.bw.movie.model.bean.YingYuanLieBiaoBean;
+import com.bw.movie.model.bean.ZiLiaoBean;
 import com.bw.movie.view.activity.YingYuanXiangQing;
 
 import io.reactivex.Observable;
@@ -187,7 +190,27 @@ public interface Constant {
 
     //电影排期
     @GET("movieApi/cinema/v2/findCinemaScheduleList")
-    Observable<PaiQiBean> PAIQI(@Query("cinemaId") int cinemaId,
-                                @Query("page") int page,
-                                @Query("count") int count);
+    Observable<PaiQiBean> PAIQI(@Query("cinemaId")int cinemaId,
+                                @Query("page")int page,
+                                @Query("count")int count);
+
+    //根据userId和sessionId查询个人信息
+    @GET("movieApi/user/v1/verify/getUserInfoByUserId")
+    Observable<ZiLiaoBean> ZILIAOOBSERVALE(@Header("userId")int userId,
+                                           @Header("sessionId")String sessionId);
+    //修改用户生日
+    @POST("movieApi/user/v2/verify/updateUserBirthday")
+    Observable<YYGuanZhuBean> XIUGAISHENGRI(@Header("userId")int userId,
+                                            @Header("sessionId")String sessionId,
+                                            @Query("birthday")String birthday);
+
+    //我的关注..影院
+    @GET("movieApi/user/v2/verify/findUserFollowCinemaList")
+    Observable<GuanZhuYingYuanBean> GUANZHUYINGYUAN(@Header("userId") int userId,@Header("sessionId")String sessionId,
+                                                    @Query("page")int page,@Query("count")int count);
+
+    //我的关注..电影
+    @GET("movieApi/user/v2/verify/findUserFollowMovieList")
+    Observable<GuanZhuDianYingBean> GUANZHUDIANYING(@Header("userId") int userId, @Header("sessionId")String sessionId,
+                                                    @Query("page")int page, @Query("count")int count);
 }

@@ -19,16 +19,18 @@ public class User {
     private String email;
     private String headPic;
     private String nickName;
+    private String birthDay;
     private int sex;
-    @Generated(hash = 548633185)
+    @Generated(hash = 416894741)
     public User(long id, String sessionId, int userId, String email, String headPic,
-            String nickName, int sex) {
+            String nickName, String birthDay, int sex) {
         this.id = id;
         this.sessionId = sessionId;
         this.userId = userId;
         this.email = email;
         this.headPic = headPic;
         this.nickName = nickName;
+        this.birthDay = birthDay;
         this.sex = sex;
     }
     @Generated(hash = 586692638)
@@ -75,6 +77,12 @@ public class User {
     }
     public void setSex(int sex) {
         this.sex = sex;
+    }
+    public String getBirthDay() {
+        return this.birthDay;
+    }
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
     }
 
 }
