@@ -1,17 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#141931"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".view.activity.FanKuiActivity">
 
-    <TextView
-        android:text="意见反馈"
-        android:textSize="@dimen/sp_48"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_36"
+        android:layout_marginRight="@dimen/dp_21">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/xximg"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="意见反馈"
+            android:textColor="#d8d8d8"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_77"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_80"
+        android:layout_marginRight="@dimen/dp_24"
+        android:background="@drawable/relativi_shape">
+
+        <EditText
+            android:id="@+id/editfankui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@null"
+            android:hint="写下您对产品的感受吧！工作人员将会在第一时间评估处理。"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="@dimen/sp_12" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/texttijiao"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_20"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp_171"
+        android:layout_marginRight="@dimen/dp_24"
+        android:background="@drawable/text_tijiao_shape"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/sp_12" />
+
+</RelativeLayout>

@@ -4,6 +4,7 @@ package com.bw.movie.constraint;
 import com.bw.movie.model.bean.CHaiLeftBean;
 import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.model.bean.CTuiJianBean;
+import com.bw.movie.model.bean.CommentBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.GuanZhuDianYingBean;
 import com.bw.movie.model.bean.GuanZhuYingYuanBean;
@@ -11,8 +12,12 @@ import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.MovieXqYingpingBean;
 import com.bw.movie.model.bean.MovieYuYueBean;
+import com.bw.movie.model.bean.MyYPPLBean;
+import com.bw.movie.model.bean.MyYYPLBean;
+import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PaiQiBean;
 import com.bw.movie.model.bean.PaiQiTimeBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
@@ -26,6 +31,7 @@ import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
 import com.bw.movie.model.bean.YingYuanLieBiaoBean;
+import com.bw.movie.model.bean.YuYueBean;
 import com.bw.movie.model.bean.ZiLiaoBean;
 import com.bw.movie.view.interfaces.IBaseView;
 
@@ -195,5 +201,41 @@ public interface Constraint {
     interface GuanZhuDianYingView extends IBaseView{
         void gzdySuccess(GuanZhuDianYingBean gzdyBean);
         void gzdyError(String s);
+    }
+    //我的预约
+    interface YuYueView extends IBaseView{
+        void yuyueSuccess(YuYueBean yuYueBean);
+        void yuyueError(String s);
+    }
+    //意见反馈
+    interface FanKuiView extends IBaseView{
+        void fankuiSuccess(YYGuanZhuBean fankui);
+        void fankuiError(String s);
+    }
+    //我的影片评论
+    interface MyypplView extends IBaseView{
+        void ypplSuccess(MyYPPLBean ypplBean);
+        void ypplError(String s);
+    }
+    //我的影院评论
+    interface MyyyplView extends IBaseView{
+        void yyplSuccess(MyYYPLBean yyplBean);
+        void yyplError(String s);
+    }
+    //写影评
+    interface IMovieCommentView extends IBaseView {
+        void commentSuccess(CommentBean commentBean);
+
+        void commentError(String s);
+    }
+    //下单
+    interface OrderView extends IBaseView{
+        void orderSuccess(OrderBean orderBean);
+        void orderError(String s);
+    }
+    //支付
+    interface PayView extends IBaseView{
+        void paySuccess(PayBean payBean);
+        void payError(String s);
     }
 }

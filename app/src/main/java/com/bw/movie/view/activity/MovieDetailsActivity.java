@@ -10,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
@@ -127,10 +126,8 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
                 movieDetailsLinShang.setVisibility(View.GONE);
                 break;
             case R.id.movie_details_xpl:
-                Toast.makeText(this, "写评论", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.movie_details_xzgp:
-                startActivity(new Intent(this,AllGouPiaoActivity.class));
+                Intent intent=new Intent(MovieDetailsActivity.this,XieYingPingActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -150,6 +147,20 @@ public class MovieDetailsActivity extends BaseActivity<MovieXQPresenter> impleme
             movieDetailsTime.setText(result.duration);
             movieDetailsAddress.setText(result.placeOrigin);
 
+            movieDetailsXzgp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent1 = new Intent(MovieDetailsActivity.this, ChooseCinemaActivity.class);
+                    intent1.putExtra("id",mMovieId);
+                    intent1.putExtra("video",result.shortFilmList.get(0).videoUrl);
+                    intent1.putExtra("iv",result.shortFilmList.get(0).imageUrl);
+                    intent1.putExtra("name",result.name);
+                    intent1.putExtra("time",result.duration);
+                    intent1.putExtra("dao",result.movieDirector.get(0).name);
+                    intent1.putExtra("fen",result.commentNum);
+                    startActivity(intent1);
+                }
+            });
 
         }
     }

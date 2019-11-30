@@ -4,6 +4,8 @@ package com.bw.movie.constant;
 import com.bw.movie.model.bean.CHaiLeftBean;
 import com.bw.movie.model.bean.CHaiRightBean;
 import com.bw.movie.model.bean.CTuiJianBean;
+import com.bw.movie.model.bean.Choose;
+import com.bw.movie.model.bean.CommentBean;
 import com.bw.movie.model.bean.EmailBean;
 import com.bw.movie.model.bean.GuanZhuDianYingBean;
 import com.bw.movie.model.bean.GuanZhuYingYuanBean;
@@ -11,20 +13,28 @@ import com.bw.movie.model.bean.HomeBanner;
 import com.bw.movie.model.bean.MovieXqBean;
 import com.bw.movie.model.bean.MovieXqYingpingBean;
 import com.bw.movie.model.bean.MovieYuYueBean;
+import com.bw.movie.model.bean.MyYPPLBean;
+import com.bw.movie.model.bean.MyYYPLBean;
+import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PaiQiBean;
 import com.bw.movie.model.bean.PaiQiTimeBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopularMovieBean;
 import com.bw.movie.model.bean.ReYingBean;
 import com.bw.movie.model.bean.RegisterBean;
 
+import com.bw.movie.model.bean.Schedule;
 import com.bw.movie.model.bean.SearchBean;
+import com.bw.movie.model.bean.Seat;
 import com.bw.movie.model.bean.ShangYingBean;
 import com.bw.movie.model.bean.XLLoginBean;
+import com.bw.movie.model.bean.Xiang;
 import com.bw.movie.model.bean.XiaoXiBean;
 import com.bw.movie.model.bean.YYGuanZhuBean;
 import com.bw.movie.model.bean.YYPingLunBean;
 import com.bw.movie.model.bean.YYXiangQingBean;
 import com.bw.movie.model.bean.YingYuanLieBiaoBean;
+import com.bw.movie.model.bean.YuYueBean;
 import com.bw.movie.model.bean.ZiLiaoBean;
 import com.bw.movie.view.activity.YingYuanXiangQing;
 
@@ -213,4 +223,73 @@ public interface Constant {
     @GET("movieApi/user/v2/verify/findUserFollowMovieList")
     Observable<GuanZhuDianYingBean> GUANZHUDIANYING(@Header("userId") int userId, @Header("sessionId")String sessionId,
                                                     @Query("page")int page, @Query("count")int count);
+
+    //我的预约
+    @GET("movieApi/user/v2/verify/findUserReserve")
+    Observable<YuYueBean> FINDUSERRESERVE(@Header("userId")int userId,@Header("sessionId")String sessionId);
+
+    //我的反馈
+    @POST("movieApi/tool/v1/verify/recordFeedBack")
+    @FormUrlEncoded
+    Observable<YYGuanZhuBean> RECORDFRRDBACK(@Header("userId")int userId,@Header("sessionId")String sessionId,
+                                             @Field("content")String content);
+    //我的电影评论
+    @GET("movieApi/user/v2/verify/findMyMovieCommentList")
+    Observable<MyYPPLBean> FINDMYMOVIECOMMENTLIST(@Header("userId")int userId,
+                                                  @Header("sessionId")String sessionId,
+                                                  @Query("page")int page,
+                                                  @Query("count")int count);
+
+    //我的影院评论
+    @GET("movieApi/user/v2/verify/findMyCinemaCommentList")
+    Observable<MyYYPLBean> FINDMYCINEMACOMMENTLIST(@Header("userId")int userId,
+                                                   @Header("sessionId")String sessionId,
+                                                   @Query("longitude")String longitude,
+                                                   @Query("latitude")String latitude,
+                                                   @Query("page")int page,
+                                                   @Query("count")int count);
+
+    //写评论
+    @FormUrlEncoded
+    @POST("movieApi/movie/v1/verify/movieComment")
+    Observable<CommentBean> COMMENT_BEAN(@Header("sessionId") String sessionId,
+                                         @Header("userId") int userId,
+                                         @Field("movieId") int movieId,
+                                         @Field("commentContent") String commentContent,
+                                         @Field("score") double score);
+
+    //下单
+    @POST("movieApi/movie/v2/verify/buyMovieTickets")
+    @FormUrlEncoded
+    Observable<OrderBean> BUYMOVIETICKETS(@Header("sessionId") String sessionId,
+                                          @Header("userId") int userId,
+                                          @Field("scheduleId")int scheduleId,
+                                          @Field("seat")String seat,
+                                          @Field("sign")String sign);
+
+    //支付
+    @POST("movieApi/movie/v2/verify/pay")
+    @FormUrlEncoded
+    Observable<PayBean> PAY(@Header("sessionId") String sessionId,
+                            @Header("userId") int userId,
+                            @Field("payType")int payType,
+                            @Field("orderId")String orderId);
+
+    //根据电影id,区域id 查询播放影院信息
+    @GET("movie/v2/findCinemasInfoByRegion")
+    Observable<Choose> findCinemasInfoByRegion(@Query("movieId") int movieId, @Query("regionId") int regionId, @Query("page") int page, @Query("count") int count);
+
+
+    //查询电影详情
+    @GET("movie/v2/findMoviesDetail")
+    Observable<Xiang> findMoviesDetail(@Query("movieId") int movieId, @Header("userId") int userId, @Header("sessionId") String sessionId);
+
+    //根据电影ID和影院ID查询电影排期列表
+    @GET("movie/v2/findMovieSchedule")
+    Observable<Schedule> findMovieSchedule(@Query("movieId") int movieId, @Query("cinemaId") int cinemaId);
+
+    //根据影厅id 查询座位信息
+    @GET("movie/v2/findSeatInfo")
+    Observable<Seat> findSeatInfo(@Query("hallId") int hallId);
+
 }

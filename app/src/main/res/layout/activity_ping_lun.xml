@@ -5,13 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:background="#141931"
     tools:context=".view.activity.PingLunActivity">
 
-    <TextView
-        android:text="我的评论"
-        android:textSize="@dimen/sp_48"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_36"
+        android:layout_marginRight="@dimen/dp_21">
+
+        <ImageView
+            android:id="@+id/xximg"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_10"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="我的评论"
+            android:textColor="#d8d8d8"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+    
+    <android.support.design.widget.TabLayout
+        android:id="@+id/mypltab"
+        android:background="#1c2243"
+        android:layout_marginTop="@dimen/dp_21"
+        app:tabTextColor="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_38">
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/myplview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 
 </LinearLayout>

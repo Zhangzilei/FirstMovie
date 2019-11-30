@@ -23,31 +23,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.AllGouPiaoActivity"></activity>
+        <activity android:name=".view.activity.ChooseCinemaActivity"/>
+        <activity android:name=".view.activity.RommActivity"/>
+        <activity android:name=".view.activity.XieYingPingActivity"/>
+        <activity android:name=".view.activity.TiJiaoChengGong"/>
+        <activity android:name="com.bw.movie.view.activity.AllGouPiaoActivity"></activity>
         <activity
             android:name=".view.activity.MovieDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".view.activity.PaiQiActivity" />
-        <activity android:name=".view.activity.GengDuoActivity" />
-        <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".view.activity.FanKuiActivity" />
-        <activity android:name=".view.activity.GouPiaoActivity" />
-        <activity android:name=".view.activity.PingLunActivity" />
-        <activity android:name=".view.activity.YuYueActivity" />
-        <activity android:name=".view.activity.SheZhiActivity" />
-        <activity android:name=".view.activity.MovieActivity" />
-        <activity android:name=".view.activity.GuanZhuActivity" />
-        <activity android:name=".view.activity.DianYingPiaoActivity" />
-        <activity android:name=".view.activity.ZiliaoActivity" />
-        <activity android:name=".view.activity.MyXinxiActivity" />
-        <activity android:name=".view.activity.YingYuanXiangQing" />
-        <activity android:name=".view.activity.LieBiaoActivity" />
-        <activity android:name=".view.activity.BannerXiangActivity" />
-        <activity android:name=".view.activity.HomePageActivity" />
-        <activity android:name=".view.activity.RegisterActivity" />
+        <activity android:name="com.bw.movie.view.activity.PaiQiActivity" />
+        <activity android:name="com.bw.movie.view.activity.GengDuoActivity" />
+        <activity android:name="com.bw.movie.view.activity.SearchActivity" />
+        <activity android:name="com.bw.movie.view.activity.FanKuiActivity" />
+        <activity android:name="com.bw.movie.view.activity.GouPiaoActivity" />
+        <activity android:name="com.bw.movie.view.activity.PingLunActivity" />
+        <activity android:name="com.bw.movie.view.activity.YuYueActivity" />
+        <activity android:name="com.bw.movie.view.activity.SheZhiActivity" />
+        <activity android:name="com.bw.movie.view.activity.MovieActivity" />
+        <activity android:name="com.bw.movie.view.activity.GuanZhuActivity" />
+        <activity android:name="com.bw.movie.view.activity.DianYingPiaoActivity" />
+        <activity android:name="com.bw.movie.view.activity.ZiliaoActivity" />
+        <activity android:name="com.bw.movie.view.activity.MyXinxiActivity" />
+        <activity android:name="com.bw.movie.view.activity.YingYuanXiangQing" />
+        <activity android:name="com.bw.movie.view.activity.LieBiaoActivity" />
+        <activity android:name="com.bw.movie.view.activity.BannerXiangActivity" />
+        <activity android:name="com.bw.movie.view.activity.HomePageActivity" />
+        <activity android:name="com.bw.movie.view.activity.RegisterActivity" />
         <activity
-            android:name=".view.activity.StartBootActivity"
+            android:name="com.bw.movie.view.activity.StartBootActivity"
             android:theme="@style/StartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,15 +59,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.LoginActivity" />
-        <activity android:name=".view.activity.MainActivity" />
-        <activity android:name=".view.activity.BootPageActivity" />
+        <activity android:name="com.bw.movie.view.activity.LoginActivity" />
+        <activity android:name="com.bw.movie.view.activity.MainActivity" />
+        <activity android:name="com.bw.movie.view.activity.BootPageActivity" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="35542484219b4f3831bc641e3b1952c1" />
 
         <service android:name="com.amap.api.location.APSService" />
+
+        <receiver android:name="com.bw.movie.view.MyService"
+            android:exported="true" >
+            <intent-filter>
+                <!-- 接收消息透传 -->
+                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
+                <!-- 监听注册、反注册、设置/删除标签、通知被点击等处理结果 -->
+                <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

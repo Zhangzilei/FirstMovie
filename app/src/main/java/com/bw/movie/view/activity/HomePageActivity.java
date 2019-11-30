@@ -2,6 +2,7 @@ package com.bw.movie.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.view.fragment.CinemaFragment;
@@ -54,6 +56,8 @@ public class HomePageActivity extends AppCompatActivity {
     private MovieFragment mMovieFragment;
     private CinemaFragment mCinemaFragment;
     private MyFragment mMyFragment;
+    //退出时的时间
+    private long mExitTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +126,27 @@ public class HomePageActivity extends AppCompatActivity {
                     .hide(mMovieFragment)
                     .commit();
 
+        }
+    }
+    //对返回键进行监听
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void exit() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            mExitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
         }
     }
 
